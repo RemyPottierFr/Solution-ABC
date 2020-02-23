@@ -3,100 +3,12 @@
 {% block title %}Accueil{% endblock %}
 
 {% block body %}
-<section class="container home">
-  <h2 class="title_home mt-3 text-center">Les derniers membres inscrits au reseau :</h2>
-  <div id="home_carousel" class="carousel carousel_member_home slide mt-5 mb-5" data-ride="carousel">
-    <div class="carousel-inner">
-      <div class="carousel-item active">
-        <div class="row">
-        {% for member in members|slice(-3, 3) %}
-          <div class="col-md-4">
-            <div class="card mx-auto">
-              <img 
-              class="card-img-top img_carousel mx-auto img_member_reco" 
-              src="{{ member.profileImage }}"
-              alt="Card image cap">
-              <div class="card-body">
-                <h4 class="card-title name_member_h4 text-center">
-                  <a href="{{ path('member_profile', {id:member.id}) }}">{{ member.name }}</a>
-                </h4>
-                <p class="card-text text-center">{{ member.company }}</p>
-                {% for job in member.getJobs()|slice(0, 1) %}
-                <p class="card-text text-center">{{ job.nameJob }}</p>
-                {% endfor %}
-              </div>
-            </div>
-          </div>
-        {% endfor %}
-      </div>
-    </div>
-    <div class="carousel-item">
-      <div class="row">
-        {% for member in members|slice(-6, 3) %}
-          <div class="col-md-4">
-            <div class="card mx-auto">
-              <img 
-              class="card-img-top img_carousel mx-auto img_member_reco" 
-              src="{{ member.profileImage }}"
-              alt="Card image cap">
-              <div class="card-body">
-                <h4 class="card-title name_member_h4 text-center">
-                  <a href="{{ path('member_profile', {id:member.id}) }}">{{ member.name }}</a>
-                </h4>
-                <p class="card-text text-center">{{ member.company }}</p>
-                {% for job in member.getJobs()|slice(0, 1) %}
-                <p class="card-text text-center">{{ job.nameJob }}</p>
-                {% endfor %}
-              </div>
-            </div>
-          </div>
-        {% endfor %}
-      </div>
-    </div>
-    <div class="carousel-item">
-      <div class="row">
-        {% for member in members|slice(-9, 3) %}
-          <div class="col-md-4">
-            <div class="card mx-auto">
-              <img 
-              class="card-img-top img_carousel mx-auto img_member_reco" 
-              src="{{ member.profileImage }}"
-              alt="Card image cap">
-              <div class="card-body">
-                <h4 class="card-title name_member_h4 text-center">
-                  <a href="{{ path('member_profile', {id:member.id}) }}">{{ member.name }}</a>
-                </h4>
-                <p class="card-text text-center">{{ member.company }}</p>
-                {% for job in member.getJobs()|slice(0, 1) %}
-                <p class="card-text text-center">{{ job.nameJob }}</p>
-                {% endfor %}
-              </div>
-            </div>
-          </div>
-        {% endfor %}
-      </div>
-    </div>
-  </div>
-  <a class="carousel-control-prev" href="#home_carousel" role="button" data-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="sr-only">Précédent</span>
-  </a>
-  <a class="carousel-control-next" href="#home_carousel" role="button" data-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="sr-only">Suivant</span>
-  </a>
-</div>
-<article>
-</br>
-<h4 class="title_home mt-3 text-center">DEVENIR ADHÉRENT</h4>
-</br>
-    <p class="text-center">Vous êtes convaincus que le réseau ABC est fait pour vous	! Deux  possibilités s’offrent à vous. Vous pouvez adhérer au «	Premier Cercle»  pour des réunions hebdomadaires le vendredi de 11h à 13h. Vous  bénéficiez d’un accompagnement optimum, des ateliers et formations et  d’une exclusivité de compétence. Le tarif est de seulement 600€ par an.  Vous pensez qu’il sera difficile d’être présent chaque semaine	? Vous  pouvez intégrer le «	deuxième cercle	». Dans ce cas vous êtes conviez aux «Afterwork» mensuels et accédez aux formations mais vous ne pouvez  prétendre à l’exclusivité de compétence. Le tarif est de seulement 300€  par an.<p>
-    <h4 class="title_home mt-3 text-center">Récupération d’email	:</h4> 
-</br>
-    <p class="text-center">Une question, un renseignement	? Venez découvrir gratuitement le réseau  et son fonctionnement lors d’une réunion ouverte ou d’un «	Afterwork»!</p>
-    </br>
-</article>
-<h2 class="text-center">Les dernières recommandations :</h2>
+{# Caroussel of members #}
+{% include "home/values.html.twig" %}
+{% include "home/beMember.html.twig" %}
+{% include "home/memberCaroussel.html.twig" %}
+
+{# <h2 class="text-center">Les dernières recommandations :</h2>
 <div id="home_reco" class="carousel slide mt-5 mb-5" data-ride="carousel">
   <div class="carousel-inner">
     <div class="carousel-item active">
@@ -149,15 +61,5 @@
     <span class="carousel-control-next-icon" aria-hidden="true"></span>
     <span class="sr-only">Suivant</span>
   </a>
-</section>
-</br>
-<article class="intro">
-    <h4 class="title_home mt-3 text-center">LES VALEURS DU RÉSEAU</h4>
-    <h6 class="title_home mt-3 text-center">le Partage:</h4>
-    <p class="text-center">Le partage opportunités, de contrats bien sûr, mais pas seulement. Le  partage d’expérience, de conseils, de bonne adresse également.
-    <h6 class="title_home mt-3 text-center">L’Entraide:</h6>
-    <p class="text-center">Un coup dur, une urgence, les membres du réseau sont aussi  là pour se serrer les coudes.</p>
-    <h6 class="title_home mt-3 text-center">Le Business:</h6>
-    <p class="text-center">Evidemment... Le réseau a été penser pour faire croitre nos  entreprises, les amener vers le succès	!<p>
-  </article>
+</section> #}
 {% endblock %}

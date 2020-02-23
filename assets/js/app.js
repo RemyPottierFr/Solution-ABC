@@ -15,3 +15,20 @@ require('bootstrap');
 // or you can include specific pieces
 // require('bootstrap/js/dist/tooltip');
 // require('bootstrap/js/dist/popover');
+
+const burger = document.getElementById('burger');
+const headerMenu = document.getElementById('Header__menu');
+
+burger.onclick = () => headerMenu.classList.toggle('hidden');
+
+const menuForScreen = () => {
+  if (window.matchMedia("(max-width: 740px)").matches) {
+    headerMenu.classList.add('hidden');
+  }
+  else {
+    headerMenu.classList.remove('hidden');
+  }
+}
+
+window.addEventListener("resize", () => menuForScreen());
+

@@ -1,246 +1,643 @@
 @import "~bootstrap/scss/bootstrap";
 @import "vars";
 
-body {
-    background-color: white;
+@font-face {
+  font-family: "LeagueGothic";
+  src: url("../fonts/LeagueGothic-Regular.otf");
 }
 
-a:link {
-    text-decoration: none;
+a:link,
+a::after,
+a::before {
+  text-decoration: none;
+}
+li,
+ul,
+nav {
+  list-style: none;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.Header {
+  width: 100vw;
+  background: rgba(55, 50, 81, 0.7);
+  position: relative;
+}
+.burger {
+  display: none;
+  width: 32px;
+  height: 32px;
+  flex-direction: column;
+  justify-content: space-between;
+  position: absolute;
+  right: 24px;
+  top: 24px;
+  padding: 0;
+  margin: 0;
+  background-color: transparent;
+  border: none;
+  z-index: 10;
+}
+.burger__line {
+  background-color: #ffff;
+  width: 32px;
+  height: 5px;
+}
+.Header__banner {
+  width: 100%;
+  height: auto;
+}
+.Header__banner-img {
+  width: 100%;
+  height: auto;
+}
+.Header__banner div {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(55, 50, 81, 0.5);
+  left: 0;
+  top: 0;
+}
+
+.Header__menu {
+  display: flex;
+  position: absolute;
+  left: 0;
+  top: 0px;
+  width: 100%;
+}
+
+.Header__menu--section {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 24px;
+  padding-top: 32px;
+  margin: 0;
+}
+
+.Header__menu--section-item {
+  position: relative;
+}
+
+.Header__menu--link,
+.Header__menu--link:hover,
+.Header__menu--link:active,
+.Menu__list--title {
+  font-size: 20px;
+  font-family: "Lato";
+  color: white;
+  margin-top: 8px;
+  cursor: pointer;
+}
+
+.Menu__list {
+  display: none;
+  position: absolute;
+  left: 0;
+  top: 28px;
+  flex-direction: column;
+  flex-wrap: wrap;
+  background-color: rgb(55, 50, 81);
+  font-size: 16px;
+  font-family: "Lato";
+  padding: 8px;
+  padding-left: 12px;
+  width: 110%;
+  z-index: 5;
+}
+
+.Header__menu--section-item:hover .Menu__list,
+.Header__menu--section-item:active .Menu__list {
+  display: flex;
+}
+
+.Menu__list--item,
+.Menu__list--item:hover,
+.Menu__list--item:active {
+  color: white;
+}
+
+.Header__menu--section-button,
+.Header__menu--section-button:hover {
+  font-size: 20px;
+  font-family: "Lato";
+  color: white;
+  background-color: rgba(37, 31, 72, 0.7);
+  padding: 16px 16px;
+  border-radius: 12px;
+  text-transform: uppercase;
+}
+
+.Header__menu--section-item-desc {
+  text-align: center;
+  font-family: "Lato";
+  font-size: 18px;
+  color: white;
+  margin-top: 12px;
+}
+
+.Header__menu--logo {
+  width: 138px;
+  height: auto;
+}
+
+.Header__title {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 70%;
+  padding-left: 10%;
+  font-size: 68px;
+  font-family: "LeagueGothic";
+  color: white;
+}
+
+.Footer {
+  width: 100vw;
+  padding: 32px;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  background-color: rgba(55, 50, 81, 0.7);
+}
+.Footer__part1 {
+  width: 30%;
+  text-align: center;
+}
+.Footer__part1-logo {
+  width: 112px;
+}
+.Footer__part1-text {
+  color: white;
+  font-size: 16px;
+  font-family: "Lato";
+}
+
+.Footer__part2 {
+  width: 30%;
+}
+
+.Footer__part2-title {
+  font-size: 24px;
+  color: white;
+}
+
+.Footer__part2-text {
+  font-size: 1rem;
+  color: white;
+}
+
+.Footer__part2--form {
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  position: relative;
+}
+
+.Footer__part2--form-input {
+  width: 100%;
+  border: none;
+  background-color: lightgray;
+  border-radius: 4px;
+  padding: 8px;
+  padding-left: 12px;
+}
+
+.Footer__part2--form-button {
+  position: absolute;
+  top: 0;
+  right: 0;
+  border-radius: 4px;
+  padding: 8px 12px;
+  height: 100%;
+  font-size: 1rem;
+  font-family: "Lato";
+}
+
+.Footer__part3 {
+  width: 30%;
+  display: flex;
+  flex-direction: column;
+  font-size: 24px;
+  font-family: "Lato";
+}
+
+.Footer__part3--link,
+.Footer__part3--link:hover,
+.Footer__part3--link:active,
+.Footer__part3--icon,
+.Footer__part3--icon:hover,
+.Footer__part3--icon:active {
+  color: white;
+}
+
+.Footer__part3--icon {
+  font-size: 40px;
+}
+
+.MemberCaroussel {
+  background-color: #ffff;
+  padding: 100px;
+}
+.MemberCaroussel__title {
+  font-size: 68px;
+  text-align: center;
+  padding-bottom: 52px;
+  font-family: "LeagueGothic";
+  color: #73879c;
+}
+.MemberCaroussel__content {
+  width: 100%;
+  margin: auto;
+}
+
+.MemberCaroussel__content--profile-content {
+  text-align: center;
+}
+.MemberCaroussel__content--profile-photo {
+  width: 100% !important;
+  border-radius: 50%;
+}
+
+.MemberCaroussel__content--profile-content-company {
+  color: #73879c;
+  font-size: 1rem;
+}
+
+.BeMember {
+  background-color: #3a2e52;
+  padding: 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: white;
+  position: relative;
+}
+
+.BeMember__title {
+  margin: auto;
+  font-size: 68px;
+  font-family: "LeagueGothic";
+  padding: 0;
+  margin: 0;
+  position: relative;
+  z-index: 1;
+}
+
+.BeMember__title::after {
+  content: "";
+  background-color: #8873c0;
+  position: absolute;
+  left: -8%;
+  width: 80%;
+  height: 24px;
+  bottom: 16px;
+  z-index: -1;
+}
+
+.BeMember__sub-title {
+  text-align: center;
+  padding: 32px;
+  font-family: "Lato";
+  line-height: 1.5;
+}
+.BeMember__content {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+.BeMember__content--text {
+  width: 40%;
+  text-align: justify;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.75;
+}
+
+.BeMember__angle-left-top {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 10vw 10vw 0 0;
+  border-color: #8873c0 transparent transparent transparent;
+}
+
+.BeMember__angle-right-bottom {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 0 0 10vw 10vw;
+  border-color: transparent transparent #8873c0 transparent;
+}
+
+.Values {
+  background-color: #ffff;
+  padding: 100px;
+}
+
+.Values__title {
+  text-align: center;
+  font-family: "LeagueGothic";
+  font-size: 68px;
+  color: #73879c;
+}
+
+.Values__content {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-around;
+  margin-top: 52px;
+}
+
+.Values__content--item {
+  width: 30%;
+  text-align: center;
+}
+
+.Values__content--item-title {
+  color: #73879c;
+  font-size: 24px;
+  font-family: "Lato";
+}
+
+.Values__content--item-text {
+  text-align: justify;
+  font-family: "Lato";
+  font-size: 16px;
+  padding: 16px;
+  color: #73879c;
 }
 
 .carousel_member_home {
-    height: 17rem;
+  height: 17rem;
 }
 
 .carousel_reco_home {
-    height: 8rem;
+  height: 8rem;
 }
 
 .formulaire_h1 {
-    text-align: center;
+  text-align: center;
 }
 
 .img_banner {
-    width: 100%;
+  width: 100%;
 }
 
 .img_profile {
-    border-radius: 50%;
-    height: 10rem;
+  border-radius: 50%;
+  height: 10rem;
 }
 
 .card-body {
-    padding: 0;
-}
-
-.banner {
-    width: 100%;
-    height: 25rem;
-    background-image: url('../../public/images/banner.png');
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-}
-
-.logoAbc {
-    width: 10rem;
-    height: 10rem;
-    background-size: cover;
-}
-
-.image_profile {
-    border-radius: 50%;
-    height: 10rem;
+  padding: 0;
 }
 
 .card_reco {
-    background: #f8f9fa;
-    box-shadow: 0 0.2rem 0.3rem -0.2rem gray;
-    border-radius: 0.2rem;
+  background: #f8f9fa;
+  box-shadow: 0 0.2rem 0.3rem -0.2rem gray;
+  border-radius: 0.2rem;
 }
 
 .img_member_reco {
-    border-radius: 50%;
+  border-radius: 50%;
 }
 
 .card_connect {
-    box-shadow: 0 0.2rem 0.3rem -0.2rem gray;
+  box-shadow: 0 0.2rem 0.3rem -0.2rem gray;
 }
 
 .profile-header {
-    transform: translateY(5rem);
+  transform: translateY(5rem);
 }
 
 .list-item {
-    margin-left : 2rem;
+  margin-left: 2rem;
 }
 
 #container {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
 .home_carousel {
-    width: 35rem;
-} 
-
-.img_carousel {
-    width: 10rem;
+  width: 35rem;
 }
 
-.name_member_h4 {
-    font-size: 1.2em;
+.img_carousel {
+  width: 10rem;
+}
+
+.name_member_h4 a {
+  font-size: 20px;
+  color: #f3a498;
+  font-family: "Lato";
 }
 
 .title_home {
-    font-size: 2em;
+  font-size: 2em;
 }
 
 .card {
-    border: none;
-    width: 15rem;
+  border: none;
+  width: 15rem;
 }
 
 .arrow {
-    background-image: url('../../public/images/arrow.png');
-    background-size: contain;
-    height: 5rem;
-    width: 5rem;
-    align-self: center;
+  background-image: url("../../public/images/arrow.png");
+  background-size: contain;
+  height: 5rem;
+  width: 5rem;
+  align-self: center;
 }
 
 .block_card {
-    justify-content: space-around;
+  justify-content: space-around;
 }
 
-.carousel-control-next-icon {
-    background-image: url('../../public/images/arrowRight.png');
-}
-
-.carousel-control-prev-icon {
-    background-image: url('../../public/images/arrowLeft.png');
-}
-
-.carousel-control-prev, .carousel-control-next {
-    background-color:rgba(145, 145, 145, 0.2);
-    width: 0.6rem!important;
+.carousel-control-prev,
+.carousel-control-next {
+  width: 0.6rem !important;
+  font-size: 52px;
+  color: #f3a498 !important;
 }
 
 .container-fluid {
-    text-align: center;
-    background-color: #F5F5F5;
-    font-family: 'Gelasio', serif;
-    
-}
-
-.footer-left a {
-    color: rgb(12, 12, 12);
-    margin: 5px;
-}
-
-.footer-left {
-    display: inline-flex;
-    
-}
-
-.footer-left .lien {
-    padding: 10px;
-    font-size: 19px;
-}
-
-.footer-right {
-    padding-top: 16px;
-    text-align: center;
+  text-align: center;
+  background-color: #f5f5f5;
+  font-family: "Gelasio", serif;
 }
 
 .container-fluid .logo2 {
-    text-align: right;
-    padding: 10px;
+  text-align: right;
+  padding: 10px;
 }
 
 .container-fluid .logo1 {
-    position: absolute;
-    padding: 10px;
+  position: absolute;
+  padding: 10px;
 }
 
 .photos-membre {
-    margin: 5px;
+  margin: 5px;
 }
 
 .card-membre {
-    padding-top: 1rem;
-    background: #f8f9fa;
-    margin: 1rem;
-    margin-top: 40px;
-    margin-left: 15px;
-    box-shadow: 0 0.2rem 0.3rem -0.2rem gray;
-    border-radius: 0.2rem;
+  padding-top: 1rem;
+  background: #f8f9fa;
+  margin: 1rem;
+  margin-top: 40px;
+  margin-left: 15px;
+  box-shadow: 0 0.2rem 0.3rem -0.2rem gray;
+  border-radius: 0.2rem;
 }
 
 .paginate a {
-    color: black;
-    text-decoration: none;
+  color: black;
+  text-decoration: none;
 }
 
 .pagination {
-    justify-content: center;
+  justify-content: center;
 }
 
-// profl page css
+// profil page css
 
 .contenant {
-    display: flex;
+  display: flex;
 }
 
-.scrool{
-    height: 30rem;
-    overflow: auto;
-    padding: 2rem;
+.scrool {
+  height: 30rem;
+  overflow: auto;
+  padding: 2rem;
 }
 
 .doreco {
-    width: 80%;
-    margin: auto;
-    max-width: 500px;
+  width: 80%;
+  margin: auto;
+  max-width: 500px;
 }
 
 .carte {
-    width: 18rem; 
-    display: flex;
-    justify-content: center; 
-    box-shadow: 0 0.2rem 0.3rem -0.2rem gray;
-    border-radius: 0.2rem;
+  width: 18rem;
+  display: flex;
+  justify-content: center;
+  box-shadow: 0 0.2rem 0.3rem -0.2rem gray;
+  border-radius: 0.2rem;
 }
 
 .clientInfo {
-    font-size: 18px;
-    width: auto;
-    text-align: center;
+  font-size: 18px;
+  width: auto;
+  text-align: center;
 }
 
 .alignItem {
-    display: flex;
-    justify-content: space-between;
-    margin-left: 2%;
-    margin-right: 2%;
+  display: flex;
+  justify-content: space-between;
+  margin-left: 2%;
+  margin-right: 2%;
 }
 
 .rightItem {
-    float: right;
+  float: right;
 }
 
+// @media (max-width: 1024px){
+
+// }
+
 @media screen and (max-width: 740px) {
+  .carousel_member_home {
+    height: 43rem;
+  }
 
-    .carousel_member_home {
-        height: 43rem;
-    }
+  .carousel_reco_home {
+    height: 20rem;
+  }
 
-    .carousel_reco_home {
-        height: 20rem;
-    }
+  .footer-left {
+    display: grid;
+  }
+  .Header__title {
+    display: none;
+  }
+  .Values,
+  .BeMember,
+  .MemberCaroussel,
+  .Footer {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+  .Footer {
+    flex-direction: column;
+    align-items: center;
+  }
+  .Values__content--item,
+  .BeMember__content--text,
+  .Footer__part1,
+  .Footer__part2,
+  .Footer__part3 {
+    width: 90%;
+  }
+  .Footer__part3 {
+    text-align: center;
+  }
 
-    .footer-left {
-        display: grid;
-    }
+  .MemberCaroussel__content {
+    height: auto !important;
+    width: 100%;
+  }
+
+  .MemberCaroussel__content--profile {
+    margin-bottom: 16px;
+  }
+  .burger {
+    display: flex;
+  }
+
+  .Header__menu {
+    width: 100vw;
+    right: -100%;
+    height: 100vh;
+    background-color: rgb(55, 50, 81);
+  }
+
+  .Header__menu--section {
+    flex-direction: column;
+  }
+  .Header__menu--section-item {
+    text-align: center;
+  }
+  .Header__menu--section-item:hover .Menu__list,
+  .Header__menu--section-item:active .Menu__list {
+    left: 0;
+    width: 100%;
+    padding: 16px;
+    background-color: #fff;
+  }
+  .Menu__list--item,
+  .Menu__list--item:hover {
+    color: rgb(55, 50, 81);
+    font-size: 22px;
+  }
+  .BeMember__title {
+    font-size: 60px;
+  }
 }

@@ -1,57 +1,66 @@
-<header>
-  <div class="banner">
-      <div class="logoAbc"></div>
+<header class="Header">
+  <button class="burger" id="burger" type="button">
+    <span class="burger__line"></span>
+    <span class="burger__line"></span>
+    <span class="burger__line"></span>
+  </button>
+  <div class="Header__banner">
+    <img class="Header__banner-img" src={{ asset('images/header_banner.png') }}  />
+    <div></div>
   </div>
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav mx-auto">
-        <li class="nav-item">
-          <a class="nav-link" href="{{ path('default') }}">ABC<span class="sr-only">(current)</span></a>
+  <h1 class="Header__title">LE  GROUPEMENT DE<br />PROFESSIONNELS À VOS CÔTÉS</h1>
+  <nav class="Header__menu" id="Header__menu">
+      <ul class="Header__menu--section">
+        <li class="Header__menu--section-item">
+          <a class="Header__menu--link" href="{{ path('default') }}">
+            <img class="Header__menu--logo" src="https://nsa40.casimages.com/img/2020/01/09/20010903194855381.png" />
+          </a>
+        </li>
+        <li class="Header__menu--section-item">
+          <a class="Header__menu--link" href="{{ path('default') }}">ABC</a>
         </li>
         {% if is_granted('ROLE_MEMBER') %}
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              RECOMMANDATIONS
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="{{ path('recommendation_list') }}">Toutes les recommandations</a>
-              <a class="dropdown-item" href="{{ path('recommendation_newstep1') }}">Faire une recommandation</a>
+          <li class="Header__menu--section-item">
+            <span class="Menu__list--title">
+              RECOMMANDATIONS <i class="fas fa-caret-down"></i>
+            </span>
+            <div class="Menu__list">
+              <a class="Menu__list--item" href="{{ path('recommendation_list') }}">Toutes les recommandations</a>
+              <a class="Menu__list--item" href="{{ path('recommendation_newstep1') }}">Faire une recommandation</a>
             </div>
           </li>
         {% endif %}
-        <li class="nav-item">
-          <a class="nav-link" href="{{ path('member_list') }}">MEMBRES<span class="sr-only">(current)</span></a>
+        <li class="Header__menu--section-item">
+          <a class="Header__menu--link" href="{{ path('member_list') }}">MEMBRES</a>
         </li>
         {% if is_granted('ROLE_MEMBER') %}
-        <li class="nav-item">
-          <a class="nav-link" href="{{ path('member_profile', { 'id': app.user.id }) }}">PROFIL<span class="sr-only">(current)</span></a>
+        <li class="Header__menu--section-item">
+          <a class="Header__menu--link" href="{{ path('member_profile', { 'id': app.user.id }) }}">PROFIL</a>
         </li>
         {% endif %}
         {% if is_granted('ROLE_ADMIN') %}
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              ADMINISTRATION
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="{{ path('member_index') }}">Gestion des membres</a>
-              <a class="dropdown-item" href="{{ path('recommendation_index') }}">Gestion des recommandations</a>
-              <a class="dropdown-item" href="{{ path('app_register') }}">Inscrire un membre</a>
+          <li class="Header__menu--section-item">
+            <span class="Menu__list--title">
+              ADMINISTRATION <i class="fas fa-caret-down"></i>
+            </span>
+            <div class="Menu__list">
+              <a class="Menu__list--item" href="{{ path('member_index') }}">Gestion des membres</a>
+              <a class="Menu__list--item" href="{{ path('recommendation_index') }}">Gestion des recommandations</a>
+              <a class="Menu__list--item" href="{{ path('app_register') }}">Inscrire un membre</a>
             </div>
           </li>
         {% endif %}
+        {% if app.user %}
+          <li class="Header__menu--section-item">
+            <a class="Header__menu--section-button" href="{{ path('app_logout') }}"> Se déconnecter</a>
+            <p class="Header__menu--section-item-desc">Bonjour {{ app.user.name }} ! </p>
+          </li>
+        {% else %}
+          <li class="Header__menu--section-item">
+            <a class="Header__menu--section-button" href="{{ path('app_login') }}"> Se connecter</a>
+          </li>
+        {% endif %}
       </ul>
-    </div>
-  {% if app.user %}
-    <p class="pt-3">Bonjour {{ app.user.name }} ! </p>
-    <a class="btn btn-primary ml-1" href="{{ path('app_logout') }}"> Se déconnecter</a>
-  {% else %}
-    <a class="btn btn-primary ml-1" href="{{ path('app_login') }}"> Se connecter</a>
-  {% endif %}
   </nav>
-
 </header>  
 

@@ -1,78 +1,69 @@
 <section class="MemberCaroussel">
-  <h2 class="MemberCaroussel__title">Les derniers membres inscrits au réseau</h2>
-  <div id="home_carousel" class="carousel carousel_member_home slide mt-5 mb-5 MemberCaroussel__content" data-ride="carousel">
-    <div class="carousel-inner">
-      <div class="carousel-item active">
-        <div class="row">
-        {% for member in members|slice(-3, 3) %}
-          <div class="col-md-4 MemberCaroussel__content--profile">
-            <div class="card mx-auto MemberCaroussel__content--profile-content">
-              <img 
-              class="MemberCaroussel__content--profile-photo" 
-              src="{{ member.profileImage }}"
-              alt="Card image cap">
-              <div class="card-body">
-                <h4 class="card-title name_member_h4 text-center">
-                  <a href="{{ path('member_profile', {id:member.id}) }}">{{ member.name }}</a>
-                </h4>
-                <p class="card-text text-center MemberCaroussel__content--profile-content-company">{{ member.company }}</p>
-              </div>
-            </div>
-          </div>
-        {% endfor %}
-      </div>
-    </div>
-    <div class="carousel-item">
-      <div class="row">
-        {% for member in members|slice(-6, 3) %}
-          <div class="col-md-4 MemberCaroussel__content--profile">
-            <div class="card mx-auto">
-              <img 
-              class="MemberCaroussel__content--profile-photo" 
-              src="{{ member.profileImage }}"
-              alt="Card image cap">
-              <div class="card-body">
-                <h4 class="card-title name_member_h4 text-center">
-                  <a href="{{ path('member_profile', {id:member.id}) }}">{{ member.name }}</a>
-                </h4>
-                <p class="card-text text-center">{{ member.company }}</p>
-                {% for job in member.getJobs()|slice(0, 1) %}
-                <p class="card-text text-center">{{ job.nameJob }}</p>
-                {% endfor %}
-              </div>
-            </div>
-          </div>
-        {% endfor %}
-      </div>
-    </div>
-    <div class="carousel-item">
-      <div class="row">
-        {% for member in members|slice(-9, 3) %}
-          <div class="col-md-4 MemberCaroussel__content--profile">
-            <div class="card mx-auto">
-              <img 
-              class="MemberCaroussel__content--profile-photo" 
-              src="{{ member.profileImage }}"
-              alt="Card image cap">
-              <div class="card-body">
-                <h4 class="card-title name_member_h4 text-center">
-                  <a href="{{ path('member_profile', {id:member.id}) }}">{{ member.name }}</a>
-                </h4>
-                <p class="card-text text-center">{{ member.company }}</p>
-                {% for job in member.getJobs()|slice(0, 1) %}
-                <p class="card-text text-center">{{ job.nameJob }}</p>
-                {% endfor %}
-              </div>
-            </div>
-          </div>
-        {% endfor %}
-      </div>
-    </div>
-  </div>
-    <a class="carousel-control-prev" href="#home_carousel" role="button" data-slide="prev" title="Précédent">
-      <i class="fas fa-chevron-left"></i>
-    </a>
-    <a class="carousel-control-next" href="#home_carousel" role="button" data-slide="next" title="Suivant">
-      <i class="fas fa-chevron-right"></i>
-    </a>
-</section>
+	<h2 class="MemberCaroussel__title">Les derniers membres inscrits au réseau</h2>
+	<div id="home_carousel" class="carousel carousel_member_home slide mt-5 mb-5 MemberCaroussel__content" data-ride="carousel">
+		<div class="carousel-inner">
+			<div class="carousel-item active">
+				<div class="row">
+					{% for member in members|slice(-3, 3) %}
+						<div class="col-md-4 MemberCaroussel__content--profile">
+							<div class="card mx-auto MemberCaroussel__content--profile-content">
+								<img class="MemberCaroussel__content--profile-photo" src="{{ member.profileImage }}" alt="Card image cap">
+								<div class="card-body">
+									<h4 class="card-title name_member_h4 text-center">
+										<a href="{{ path('member_profile', {id:member.id}) }}">{{ member.name }}</a>
+									</h4>
+									<p class="card-text text-center MemberCaroussel__content--profile-content-company">{{ member.company }}</p>
+								</div>
+							</div>
+						</div>
+					{% endfor %}
+				</div>
+			</div>
+			<div class="carousel-item">
+				<div class="row">
+					{% for member in members|slice(-6, 3) %}
+						<div class="col-md-4 MemberCaroussel__content--profile">
+							<div class="card mx-auto">
+								<img class="MemberCaroussel__content--profile-photo" src="{{ member.profileImage }}" alt="Card image cap">
+								<div class="card-body">
+									<h4 class="card-title name_member_h4 text-center">
+										<a href="{{ path('member_profile', {id:member.id}) }}">{{ member.name }}</a>
+									</h4>
+									<p class="card-text text-center">{{ member.company }}</p>
+									{% for job in member.getJobs()|slice(0, 1) %}
+										<p class="card-text text-center">{{ job.nameJob }}</p>
+									{% endfor %}
+								</div>
+							</div>
+						</div>
+					{% endfor %}
+				</div>
+			</div>
+			<div class="carousel-item">
+				<div class="row">
+					{% for member in members|slice(-9, 3) %}
+						<div class="col-md-4 MemberCaroussel__content--profile">
+							<div class="card mx-auto">
+								<img class="MemberCaroussel__content--profile-photo" src="{{ member.profileImage }}" alt="Card image cap">
+								<div class="card-body">
+									<h4 class="card-title name_member_h4 text-center">
+										<a href="{{ path('member_profile', {id:member.id}) }}">{{ member.name }}</a>
+									</h4>
+									<p class="card-text text-center">{{ member.company }}</p>
+									{% for job in member.getJobs()|slice(0, 1) %}
+										<p class="card-text text-center">{{ job.nameJob }}</p>
+									{% endfor %}
+								</div>
+							</div>
+						</div>
+					{% endfor %}
+				</div>
+			</div>
+		</div>
+		<a class="carousel-control-prev" href="#home_carousel" role="button" data-slide="prev" title="Précédent">
+			<i class="fas fa-chevron-left"></i>
+		</a>
+		<a class="carousel-control-next" href="#home_carousel" role="button" data-slide="next" title="Suivant">
+			<i class="fas fa-chevron-right"></i>
+		</a>
+	</section>

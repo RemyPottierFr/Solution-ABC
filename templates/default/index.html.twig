@@ -1,65 +1,66 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Accueil{% endblock %}
+{% block title %}Accueil
+{% endblock %}
 
 {% block body %}
-{# Caroussel of members #}
-{% include "home/values.html.twig" %}
-{% include "home/beMember.html.twig" %}
-{% include "home/memberCaroussel.html.twig" %}
+	{# Caroussel of members #}
+	{% include "home/values.html.twig" %}
+	{% include "home/beMember.html.twig" %}
+	{% include "home/memberCaroussel.html.twig" %}
 
-{# <h2 class="text-center">Les dernières recommandations :</h2>
-<div id="home_reco" class="carousel slide mt-5 mb-5" data-ride="carousel">
-  <div class="carousel-inner">
-    <div class="carousel-item active">
-      <div class="row">
-        {% for recommendation in recommendations|slice(-3, 3) %}
-          <div class="col-md-4">
-            <div class="card mx-auto">
-              <div class="card-body">
-                <h4 class="card-title name_member_h4 text-center">Recommandations de {{ recommendation.owner.name }}</h4>
-                <h4 class="card-title name_member_h4 text-center">Pour {{ recommendation.target.name }}</h4>
-              </div>
-            </div>
-          </div>
-        {% endfor %}
-      </div>
-    </div>
-    <div class="carousel-item">
-      <div class="row">
-        {% for recommendation in recommendations|slice(-3, 3) %}
-          <div class="col-md-4">
-            <div class="card mx-auto">
-              <div class="card-body">
-                <h4 class="card-title name_member_h4 text-center">Recommandations de {{ recommendation.owner.name }}</h4>
-                <h4 class="card-title name_member_h4 text-center">Pour {{ recommendation.target.name }}</h4>
-              </div>
-            </div>
-          </div>
-        {% endfor %}
-      </div>
-    </div>
-  <div class="carousel-item">
-    <div class="row">
-      {% for recommendation in recommendations|slice(-3, 3) %}
-        <div class="col-md-4">
-          <div class="card mx-auto">
-            <div class="card-body">
-              <h4 class="card-title name_member_h4 text-center">Recommandations de {{ recommendation.owner.name }}</h4>
-              <h4 class="card-title name_member_h4 text-center">Pour {{ recommendation.target.name }}</h4>
-            </div>
-          </div>
-        </div>
-      {% endfor %}
-    </div>
-  </div>
-  <a class="carousel-control-prev" href="#home_reco" role="button" data-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="sr-only">Précédent</span>
-  </a>
-  <a class="carousel-control-next" href="#home_reco" role="button" data-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="sr-only">Suivant</span>
-  </a>
-</section> #}
+	{# <h2 class="text-center">Les dernières recommandations :</h2>
+		<div id="home_reco" class="carousel slide mt-5 mb-5" data-ride="carousel">
+		  <div class="carousel-inner">
+		    <div class="carousel-item active">
+		      <div class="row">
+		        {% for recommendation in recommendations|slice(-3, 3) %}
+		          <div class="col-md-4">
+		            <div class="card mx-auto">
+		              <div class="card-body">
+		                <h4 class="card-title name_member_h4 text-center">Recommandations de {{ recommendation.owner.name }}</h4>
+		                <h4 class="card-title name_member_h4 text-center">Pour {{ recommendation.target.name }}</h4>
+		              </div>
+		            </div>
+		          </div>
+		        {% endfor %}
+		      </div>
+		    </div>
+		    <div class="carousel-item">
+		      <div class="row">
+		        {% for recommendation in recommendations|slice(-3, 3) %}
+		          <div class="col-md-4">
+		            <div class="card mx-auto">
+		              <div class="card-body">
+		                <h4 class="card-title name_member_h4 text-center">Recommandations de {{ recommendation.owner.name }}</h4>
+		                <h4 class="card-title name_member_h4 text-center">Pour {{ recommendation.target.name }}</h4>
+		              </div>
+		            </div>
+		          </div>
+		        {% endfor %}
+		      </div>
+		    </div>
+		  <div class="carousel-item">
+		    <div class="row">
+		      {% for recommendation in recommendations|slice(-3, 3) %}
+		        <div class="col-md-4">
+		          <div class="card mx-auto">
+		            <div class="card-body">
+		              <h4 class="card-title name_member_h4 text-center">Recommandations de {{ recommendation.owner.name }}</h4>
+		              <h4 class="card-title name_member_h4 text-center">Pour {{ recommendation.target.name }}</h4>
+		            </div>
+		          </div>
+		        </div>
+		      {% endfor %}
+		    </div>
+		  </div>
+		  <a class="carousel-control-prev" href="#home_reco" role="button" data-slide="prev">
+		    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+		    <span class="sr-only">Précédent</span>
+		  </a>
+		  <a class="carousel-control-next" href="#home_reco" role="button" data-slide="next">
+		    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+		    <span class="sr-only">Suivant</span>
+		  </a>
+		</section> #}
 {% endblock %}

@@ -11,6 +11,7 @@ a::after,
 a::before {
   text-decoration: none;
 }
+
 li,
 ul,
 nav {
@@ -26,6 +27,7 @@ nav {
   background: rgba(55, 50, 81, 0.7);
   position: relative;
 }
+
 .burger {
   display: none;
   width: 32px;
@@ -41,19 +43,23 @@ nav {
   border: none;
   z-index: 10;
 }
+
 .burger__line {
   background-color: #ffff;
   width: 32px;
   height: 5px;
 }
+
 .Header__banner {
   width: 100%;
   height: auto;
 }
+
 .Header__banner-img {
   width: 100%;
   height: auto;
 }
+
 .Header__banner div {
   content: "";
   position: absolute;
@@ -167,17 +173,21 @@ nav {
   flex-wrap: wrap;
   background-color: rgba(55, 50, 81, 0.7);
 }
+
 .Footer__part1 {
   width: 30%;
   text-align: center;
 }
+
 .Footer__part1-logo {
   width: 112px;
 }
+
 .Footer__part1-text {
   color: white;
   font-size: 16px;
   font-family: "Lato";
+  margin-top: 20px;
 }
 
 .Footer__part2 {
@@ -246,6 +256,7 @@ nav {
   background-color: #ffff;
   padding: 100px;
 }
+
 .MemberCaroussel__title {
   font-size: 68px;
   text-align: center;
@@ -253,6 +264,7 @@ nav {
   font-family: "LeagueGothic";
   color: #73879c;
 }
+
 .MemberCaroussel__content {
   width: 100%;
   margin: auto;
@@ -261,6 +273,7 @@ nav {
 .MemberCaroussel__content--profile-content {
   text-align: center;
 }
+
 .MemberCaroussel__content--profile-photo {
   width: 100% !important;
   border-radius: 50%;
@@ -308,12 +321,14 @@ nav {
   font-family: "Lato";
   line-height: 1.5;
 }
+
 .BeMember__content {
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
   flex-wrap: wrap;
 }
+
 .BeMember__content--text {
   width: 40%;
   text-align: justify;
@@ -381,6 +396,102 @@ nav {
   font-size: 16px;
   padding: 16px;
   color: #73879c;
+}
+
+.lastReco-no-reco {
+  text-align: center;
+  font-size: 46px;
+  font-family: "LeagueGothic";
+  color: #ffff;
+}
+
+.lastReco__caroussel {
+  width: 90%;
+  margin: auto;
+  margin-top: 40px;
+  margin-bottom: 20px;
+}
+
+.lastReco__row {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.lastReco__rom--item-arrow {
+  position: absolute;
+  left: 50%;
+  top: 0px;
+  transform: translateX(-50%) rotate(-40deg);
+  width: 90px;
+}
+
+.lastReco__row--item {
+  display: flex;
+  flex-wrap: wrap;
+  position: relative;
+  text-align: center;
+  justify-content: space-between;
+  width: 45%;
+  padding-top: 40px;
+}
+
+.lastReco__row--item-profile {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+}
+
+.lastReco__row--item-name {
+  font-family: "Lato";
+  font-size: 1.25rem;
+  color: #8873C0;
+}
+
+.lastReco__row--item-company {
+  font-family: "Lato";
+  font-size: 16px;
+  color: white;
+}
+
+.membres {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  padding: 20px;
+  padding-top: 60px;
+  padding-bottom: 60px;
+}
+
+.membresPage__head {
+  padding: 40px;
+  background-color: #3a2e52;
+  color: white;
+  font-family: "LeagueGothic";
+  position: relative;
+  text-align: center;
+}
+
+.membresPage__head-title {
+  font-size: 68px;
+  position: relative;
+  z-index: 1;
+}
+
+.membresPage__head-title::after {
+  content: "";
+  background-color: #8873c0;
+  position: absolute;
+  left: -8%;
+  width: 80%;
+  height: 24px;
+  bottom: 8px;
+  z-index: -1;
+}
+
+.membresPage__head-sub-title {
+  font-size: 32px;
+  font-family: "LeagueGothic";
 }
 
 .carousel_member_home {
@@ -497,14 +608,74 @@ nav {
   margin: 5px;
 }
 
-.card-membre {
+.membres__card {
   padding-top: 1rem;
-  background: #f8f9fa;
   margin: 1rem;
   margin-top: 40px;
-  margin-left: 15px;
-  box-shadow: 0 0.2rem 0.3rem -0.2rem gray;
   border-radius: 0.2rem;
+  text-align: center;
+}
+
+.membres__card-name {
+  text-align: center;
+  font-size: 1.25rem;
+  padding-top: 16px;
+}
+
+.membres__card-img {
+  border-radius: 50%;
+  width: 100%;
+}
+
+.image_profile {
+  border-radius: 50%;
+  height: 64px;
+  width: auto;
+}
+
+.memberList__title {
+  margin: 20px;
+  font-size: 70px;
+  font-family: "LeagueGothic";
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.memberList__add {
+  font-size: 28px;
+  color: #8873c0;
+  font-family: "Lato";
+}
+
+.memberList__add .fa-plus-circle {
+  margin-right: 8px;
+}
+
+.memberList__head {
+  background-color: #3a2e52;
+  color: white;
+  font-size: 16px;
+  font-family: "Lato";
+}
+
+
+.memberList__line-item {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.memberList__line-item-link {
+  white-space: nowrap;
+}
+
+.memberList__line-item-link span {
+  margin-left: 8px;
+}
+
+.membres__card-name a {
+  color: #8873c0;
 }
 
 .paginate a {
@@ -575,9 +746,11 @@ nav {
   .footer-left {
     display: grid;
   }
+
   .Header__title {
     display: none;
   }
+
   .Values,
   .BeMember,
   .MemberCaroussel,
@@ -585,10 +758,12 @@ nav {
     padding-left: 24px;
     padding-right: 24px;
   }
+
   .Footer {
     flex-direction: column;
     align-items: center;
   }
+
   .Values__content--item,
   .BeMember__content--text,
   .Footer__part1,
@@ -596,6 +771,7 @@ nav {
   .Footer__part3 {
     width: 90%;
   }
+
   .Footer__part3 {
     text-align: center;
   }
@@ -608,6 +784,7 @@ nav {
   .MemberCaroussel__content--profile {
     margin-bottom: 16px;
   }
+
   .burger {
     display: flex;
   }
@@ -622,9 +799,11 @@ nav {
   .Header__menu--section {
     flex-direction: column;
   }
+
   .Header__menu--section-item {
     text-align: center;
   }
+
   .Header__menu--section-item:hover .Menu__list,
   .Header__menu--section-item:active .Menu__list {
     left: 0;
@@ -632,11 +811,13 @@ nav {
     padding: 16px;
     background-color: #fff;
   }
+
   .Menu__list--item,
   .Menu__list--item:hover {
     color: rgb(55, 50, 81);
     font-size: 22px;
   }
+
   .BeMember__title {
     font-size: 60px;
   }

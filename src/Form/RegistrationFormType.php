@@ -22,6 +22,13 @@ class RegistrationFormType extends AbstractType
             ->add('registerEmail')
             ->add('name', null, ['attr' => ['placeholder' => 'Jean Dupont']])
             ->add('company', null, ['attr' => ['placeholder' => 'Entreprise du chene']])
+            ->add('jobs', EntityType::class, [
+                'class' => Job::class,
+                'choice_label' => 'nameJob',
+                'multiple' => true,
+                'expanded' => false,
+                'by_reference' => false,
+            ])
             ->add('phonenumber', null, ['attr' => ['placeholder' => '02 47 25 00 00']])
             ->add('workingLocation', null, ['attr' => ['placeholder' => '49 rue du vieux chene']])
             ->add('postCode', null, ['attr' => ['placeholder' => '72500']])
@@ -41,18 +48,10 @@ class RegistrationFormType extends AbstractType
                         'min' => 6,
                         'minMessage' => 'Your password should be at least {{ limit }} characters',
                         // max length allowed by Symfony for security reasons
-                        'max' => 4096,
+                        'max' => 100,
                     ]),
                 ],
-            ])
-        ;
-        $builder->add('jobs', EntityType::class, [
-            'class' => Job::class,
-            'choice_label' => 'nameJob',
-            'multiple' => true,
-            'expanded' => false,
-            'by_reference' => false,
-        ]);
+            ]);
         $options;
     }
 

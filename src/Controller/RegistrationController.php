@@ -42,18 +42,19 @@ class RegistrationController extends AbstractController
 
             $entityManager = $this->getDoctrine()->getManager();
             $user->setRoles(['ROLE_MEMBER']);
-            
+
             $memberRegister = $user->getName();
-            
+            dump($this->getParameter('mailer_from'));
+
             if (!empty($user->getRegisterEmail())) {
                 $email = (new Email())
                 ->from($this->getParameter('mailer_from'))
                 ->to($user->getRegisterEmail())
-                ->subject('Bienvenue parmis nous !')
+                ->subject('Bienvenue parmi nous !')
                 ->html($this->renderView('member/mail.html.twig', ['memberRegister' => $memberRegister]));
                 $mailer->send($email);
             }
-            
+
             $entityManager->persist($user);
             $entityManager->flush();
 

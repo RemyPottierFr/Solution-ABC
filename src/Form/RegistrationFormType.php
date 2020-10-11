@@ -2,15 +2,13 @@
 
 namespace App\Form;
 
-use App\Entity\Member;
 use App\Entity\Job;
+use App\Entity\Member;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Validator\Constraints\IsTrue;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
 
@@ -34,7 +32,7 @@ class RegistrationFormType extends AbstractType
             ->add('postCode', null, ['attr' => ['placeholder' => '72500']])
             ->add('city', null, ['attr' => ['placeholder' => 'Nogent sur Loire']])
             ->add('profileImage', null, [
-                  'data' => 'https://image.flaticon.com/icons/png/512/64/64572.png',
+                'data' => 'https://image.flaticon.com/icons/png/512/64/64572.png',
             ])
             ->add('plainPassword', PasswordType::class, [
                 // instead of being set onto the object directly,

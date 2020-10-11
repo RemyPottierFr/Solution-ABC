@@ -2,9 +2,7 @@
 
 namespace App\Form;
 
-use App\Entity\Job;
 use App\Entity\Recommendation;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -14,8 +12,7 @@ class RecommendationStep1Type extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('target', null, ['choice_label' => 'name'])
-        ;
+            ->add('target', null, ['choice_label' => 'name']);
         $options;
     }
 

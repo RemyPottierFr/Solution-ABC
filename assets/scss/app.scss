@@ -26,6 +26,7 @@ nav {
   width: 100vw;
   background: rgba(55, 50, 81, 0.7);
   position: relative;
+  z-index: 100;
 }
 
 .burger {
@@ -698,7 +699,7 @@ nav {
   display: flex;
 }
 
-.scrool {
+.scroll {
   height: 30rem;
   overflow: auto;
   padding: 2rem;
@@ -734,10 +735,6 @@ nav {
 .rightItem {
   float: right;
 }
-
-// @media (max-width: 1024px){
-
-// }
 
 @media screen and (max-width: 740px) {
   .carousel_member_home {
@@ -826,4 +823,38 @@ nav {
   .BeMember__title {
     font-size: 60px;
   }
+}
+
+.Event__form{
+  margin:60px;
+}
+.Event__list{
+  margin:60px;
+  display:grid;
+  grid-column: 1;
+  grid-row-gap: 12px;
+}
+
+.Event__list-item{
+  display:flex;
+  flex-wrap: nowrap;
+  font-size: 1.2rem;
+  color:black;
+  box-shadow: 0px 0px 2px 0px rgba(15,15,15,1);
+  border-radius: 4px;
+  padding: 8px 12px;
+}
+
+.Event__list-item span{
+  margin: 0 8px;
+}
+
+.Event__list-item--date{
+  color:#8C77C6;
+}
+
+.btn-add{
+  background: #8C77C6;
+  color:white;
+  text-transform: uppercase;
 }

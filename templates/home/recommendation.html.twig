@@ -3,29 +3,31 @@
 {% block title %}Recommandations
 {% endblock %}
 {% block body %}
-	<div class="container mt-5">
-		<h2 class="text-center">Toutes les recommandations du réseau ABC</h2>
-		<div class="row">
-			{% for recommendation in recommendations %}
-				<div class="card_reco col-sm-12 col-xl-5 mx-auto border mt-3 mr">
-					<div class="row mt-3 block_card">
-						<img class="col-4 img_member_reco" src="{{ recommendation.owner.profileImage }}" alt="photo de profile/entreprise"/>
-						<div class="arrow"></div>
-						<img class="col-4 img_member_reco" src="{{ recommendation.target.profileImage }}" alt="photo de profile/entreprise"/>
-					</div>
-					<div class="row mt-1 text-center">
-						<h4 class="col-6 name_member_h4">
-							{{ recommendation.owner.name }}
-						</h4>
-						<h4 class="col-6 name_member_h4">
-							{{ recommendation.target.name }}
-						</h4>
-					</div>
-				</div>
-			{% endfor %}
-		</div>
-		<nav class="paginate mt-5" aria-label="Page navigation">
-			{{ knp_pagination_render(recommendations) }}
-		</nav>
-	</div>
+    <div class="container mt-5">
+        <h2 class="text-center">Toutes les recommandations du réseau ABC</h2>
+        <div class="row">
+            {% for recommendation in recommendations %}
+                <div class="card_reco col-sm-12 col-xl-5 mx-auto border mt-3 mr">
+                    <div class="row mt-3 block_card">
+                        <img class="col-4 img_member_reco" src="{{ recommendation.owner.profileImage }}"
+                             alt="photo de profile/entreprise"/>
+                        <div class="arrow"></div>
+                        <img class="col-4 img_member_reco" src="{{ recommendation.target.profileImage }}"
+                             alt="photo de profile/entreprise"/>
+                    </div>
+                    <div class="row mt-1 text-center">
+                        <h4 class="col-6 name_member_h4">
+                            {{ recommendation.owner.name }}
+                        </h4>
+                        <h4 class="col-6 name_member_h4">
+                            {{ recommendation.target.name }}
+                        </h4>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        <nav class="paginate mt-5" aria-label="Page navigation">
+            {{ knp_pagination_render(recommendations) }}
+        </nav>
+    </div>
 {% endblock %}

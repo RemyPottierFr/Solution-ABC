@@ -2,9 +2,8 @@
 
 namespace App\Form;
 
-use App\Entity\Job;
-use App\Entity\Recommendation;
 use App\Entity\Prestation;
+use App\Entity\Recommendation;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -19,12 +18,11 @@ class RecommendationStep2Type extends AbstractType
             ->add('clientName')
             ->add('infoClient')
             ->add('prestations', EntityType::class, [
-                  'choices' => $options['prestations'],
-                  'class' => Prestation::class,
-                  'choice_label' => 'name',
-                  'multiple' => true
-              ]);
-        ;
+                'choices' => $options['prestations'],
+                'class' => Prestation::class,
+                'choice_label' => 'name',
+                'multiple' => true
+            ]);
         $options;
     }
 

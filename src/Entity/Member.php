@@ -1,14 +1,13 @@
 <?php
 
 namespace App\Entity;
- 
-use App\Entity\Job;
-use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
-use Symfony\Component\Validator\Constraints as Assert;
+
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\MemberRepository")
@@ -93,28 +92,19 @@ class Member implements UserInterface
      * @ORM\ManyToMany(targetEntity="App\Entity\Job", mappedBy="members")
      */
     private $jobs;
-
-    public function __construct()
-    {
-        $this->assignedReco = new ArrayCollection();
-        $this->jobs = new ArrayCollection();
-    }
- /**
+    /**
      * @ORM\Column(type="string", length=180, unique=true)
      */
     private $registerEmail;
-
     /**
      * @ORM\Column(type="json")
      */
     private $roles = [];
-
     /**
      * @var string The hashed password
      * @ORM\Column(type="string")
      */
     private $password;
-
     /**
      * @Assert\Regex(
      *     pattern="/^(([0-8][0-9])|(9[0-5]))[0-9]{3}$/",
@@ -123,11 +113,16 @@ class Member implements UserInterface
      * @ORM\Column(type="string", length=255)
      */
     private $postCode;
-
     /**
      * @ORM\Column(type="string", length=255)
      */
     private $city;
+
+    public function __construct()
+    {
+        $this->assignedReco = new ArrayCollection();
+        $this->jobs = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -153,7 +148,7 @@ class Member implements UserInterface
      */
     public function getUsername(): string
     {
-        return (string) $this->registerEmail;
+        return (string)$this->registerEmail;
     }
 
     /**
@@ -180,7 +175,7 @@ class Member implements UserInterface
      */
     public function getPassword(): string
     {
-        return (string) $this->password;
+        return (string)$this->password;
     }
 
     public function setPassword(string $password): self

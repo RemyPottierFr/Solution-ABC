@@ -2,17 +2,14 @@
 
 namespace App\Controller;
 
-use App\Entity\Job;
 use App\Entity\Member;
 use App\Form\MemberType;
-use Symfony\Component\Mime\Email;
 use App\Repository\MemberRepository;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Mailer\MailerInterface;
-use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Annotation\Route;
 
 /**
  * @Route("/member")
@@ -22,6 +19,8 @@ class MemberController extends AbstractController
     /**
      * @IsGranted("ROLE_ADMIN")
      * @Route("/", name="member_index", methods={"GET"})
+     * @param MemberRepository $memberRepository
+     * @return Response
      */
     public function index(MemberRepository $memberRepository): Response
     {
@@ -33,6 +32,8 @@ class MemberController extends AbstractController
     /**
      * @IsGranted("ROLE_ADMIN")
      * @Route("/new", name="member_new", methods={"GET","POST"})
+     * @param Request $request
+     * @return Response
      */
     public function new(Request $request): Response
     {
@@ -50,10 +51,11 @@ class MemberController extends AbstractController
         }
 
         return $this->render('member/new.html.twig', [
-        'member' => $member,
-        'form' => $form->createView()
+            'member' => $member,
+            'form' => $form->createView()
         ]);
     }
+
     /**
      * @IsGranted("ROLE_ADMIN")
      * @Route("/{id}", name="member_show", methods={"GET"})
@@ -61,9 +63,10 @@ class MemberController extends AbstractController
     public function show(Member $member): Response
     {
         return $this->render('member/show.html.twig', [
-        'member' => $member,
+            'member' => $member,
         ]);
     }
+
     /**
      * @IsGranted("ROLE_MEMBER")
      * @Route("/{id}/edit", name="member_edit", methods={"GET","POST"})
@@ -72,7 +75,7 @@ class MemberController extends AbstractController
     {
         $form = $this->createForm(MemberType::class, $member);
         $form->handleRequest($request);
-        
+
         if (!in_array("ROLE_ADMIN", $this->getUser()->getRoles())) {
             if ($this->getUser()->getId() !== $member->getId()) {
                 return $this->redirectToRoute('default');
@@ -86,8 +89,8 @@ class MemberController extends AbstractController
         }
 
         return $this->render('member/edit.html.twig', [
-        'member' => $member,
-        'form' => $form->createView()
+            'member' => $member,
+            'form' => $form->createView()
         ]);
     }
 
@@ -97,7 +100,7 @@ class MemberController extends AbstractController
      */
     public function delete(Request $request, Member $member): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$member->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $member->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
 
             $entityManager->remove($member);

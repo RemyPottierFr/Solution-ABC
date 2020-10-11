@@ -2,9 +2,7 @@
 
 namespace App\Form;
 
-use App\Entity\Job;
 use App\Entity\Recommendation;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -19,10 +17,10 @@ class RecommendationType extends AbstractType
             ->add('comment')
             ->add('clientName')
             ->add('infoClient')
-            ->add('status')
-        ;
+            ->add('status');
         $options;
     }
+
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([

@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Les événements ABC{% endblock %}
+
+{% block body %}
+
+    <div>
+        <div class="membresPage__head">
+            <span class="membresPage__head-title">Ajouter un événement</span>
+        </div>
+        <section class="Event__form">
+            {{ form_start(form) }}
+
+            <div class="row formulaire_div">
+                <div class="form-group col-12 col-xl-6 mx-auto">
+                    {{ form_label(form.title, 'Nom de l\'événement') }}
+                    {{ form_widget(form.title) }}
+                </div>
+            </div>
+            <div class="row formulaire_div">
+                <div class="form-group col-12 col-xl-6 mx-auto">
+                    {{ form_label(form.date, 'Date de l\'événement') }}
+                    {{ form_widget(form.date) }}
+                </div>
+            </div>
+            <div class="row formulaire_div">
+                <div class="form-group col-12 col-xl-6 mx-auto">
+                    {{ form_label(form.flyer, 'Flyer de l\'événement') }}
+                    {{ form_widget(form.flyer) }}
+                </div>
+            </div>
+            <div class="row formulaire_div">
+                <div class="form-group col-12 col-xl-6 mx-auto">
+                    {{ form_label(form.recap, 'Récapitulatif de l\'événement (optionnel)') }}
+                    {{ form_widget(form.recap) }}
+                </div>
+            </div>
+
+            <div class="row">
+                <button type="submit"
+                        class="btn btn-add mx-auto">{{ button_label|default('Créer un événement') }}</button>
+            </div>
+
+            {{ form_end(form) }}
+        </section>
+    </div>
+
+{% endblock %}

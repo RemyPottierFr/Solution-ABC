@@ -3,24 +3,24 @@
 {% block title %}Nouvelle Prestation{% endblock %}
 
 {% block body %}
-   <h1>Entrer ci dessous la prestation du métier associé</h1>
-   {{ form_start(form) }}
-      {{ form_errors(form) }}
-      {{ form_widget(form._token) }}
-      <div class="row formulaire_div">
-         <div class="form-group col-12 col-xl-6 mx-auto">
+    <h1>Entrer ci dessous la prestation du métier associé</h1>
+    {{ form_start(form) }}
+    {{ form_errors(form) }}
+    {{ form_widget(form._token) }}
+    <div class="row formulaire_div">
+        <div class="form-group col-12 col-xl-6 mx-auto">
             {{ form_label(form.name, 'J\'effectue la prestation suivante :') }}
             {{ form_widget(form.name, {'attr':{'class':'form-control border border-dark'}}) }}
-         </div> 
-      </div>
-      <div class="row formulaire_div">
-         <div class="form-group col-12 col-xl-6 mx-auto">
+        </div>
+    </div>
+    <div class="row formulaire_div">
+        <div class="form-group col-12 col-xl-6 mx-auto">
             {{ form_label(form.job, 'Pour mon métier de :') }}
             {{ form_widget(form.job, {'attr':{'class':'form-control border border-dark'}}) }}
-         </div> 
-      </div>
-      <div class="row">  
-         <button type="submit" class="btn btn-dark mx-auto">{{ button_label|default('Suivant') }}</button>
-      </div>
-   {{ form_end(form, {'render_rest': false}) }}
+        </div>
+    </div>
+    <div class="row">
+        <button type="submit" class="btn btn-dark mx-auto">{{ button_label|default('Suivant') }}</button>
+    </div>
+    {{ form_end(form, {'render_rest': false}) }}
 {% endblock %}

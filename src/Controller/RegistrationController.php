@@ -5,15 +5,13 @@ namespace App\Controller;
 use App\Entity\Member;
 use App\Form\RegistrationFormType;
 use App\Security\LoginFormAuthenticator;
-use DateTime;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Mailer\MailerInterface;
+use Symfony\Component\Mime\Email;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Security\Guard\GuardAuthenticatorHandler;
-use Symfony\Component\Mailer\MailerInterface;
-use Symfony\Component\Mime\Email;
 
 class RegistrationController extends AbstractController
 {
@@ -26,7 +24,8 @@ class RegistrationController extends AbstractController
         GuardAuthenticatorHandler $guardHandler,
         LoginFormAuthenticator $authenticator,
         MailerInterface $mailer
-    ) {
+    )
+    {
         $user = new Member();
         $form = $this->createForm(RegistrationFormType::class, $user);
         $form->handleRequest($request);
@@ -48,10 +47,10 @@ class RegistrationController extends AbstractController
 
             if (!empty($user->getRegisterEmail())) {
                 $email = (new Email())
-                ->from($this->getParameter('mailer_from'))
-                ->to($user->getRegisterEmail())
-                ->subject('Bienvenue parmi nous !')
-                ->html($this->renderView('member/mail.html.twig', ['memberRegister' => $memberRegister]));
+                    ->from($this->getParameter('mailer_from'))
+                    ->to($user->getRegisterEmail())
+                    ->subject('Bienvenue parmi nous !')
+                    ->html($this->renderView('member/mail.html.twig', ['memberRegister' => $memberRegister]));
                 $mailer->send($email);
             }
 

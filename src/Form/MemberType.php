@@ -2,19 +2,16 @@
 
 namespace App\Form;
 
-use App\Entity\Member;
 use App\Entity\Job;
+use App\Entity\Member;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Component\Validator\Constraints\IsTrue;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
-use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
-use Symfony\Component\Form\Extension\Core\Type\PasswordType;
-use Symfony\Component\Form\Extension\Core\Type\EmailType;
 
 class MemberType extends AbstractType
 {
@@ -29,7 +26,7 @@ class MemberType extends AbstractType
             ->add('postCode', null, ['attr' => ['placeholder' => '63000']])
             ->add('city', null, ['attr' => ['placeholder' => 'Clermont-Ferrand']])
             ->add('profileImage', null, [
-                  'data' => 'https://image.flaticon.com/icons/png/512/64/64572.png',
+                'data' => 'https://image.flaticon.com/icons/png/512/64/64572.png',
             ])
             ->add('plainPassword', PasswordType::class, [
                 // instead of being set onto the object directly,
@@ -46,15 +43,14 @@ class MemberType extends AbstractType
                         'max' => 4096,
                     ]),
                 ],
-            ])
-            ;
-            $builder->add('jobs', EntityType::class, [
-                'class' => Job::class,
-                'choice_label' => 'nameJob',
-                'multiple' => true,
-                'by_reference' => false
             ]);
-            $options;
+        $builder->add('jobs', EntityType::class, [
+            'class' => Job::class,
+            'choice_label' => 'nameJob',
+            'multiple' => true,
+            'by_reference' => false
+        ]);
+        $options;
     }
 
     public function configureOptions(OptionsResolver $resolver)

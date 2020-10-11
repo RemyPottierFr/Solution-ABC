@@ -1,72 +1,90 @@
 <header class="Header">
-	<button class="burger" id="burger" type="button">
-		<span class="burger__line"></span>
-		<span class="burger__line"></span>
-		<span class="burger__line"></span>
-	</button>
-	<div class="Header__banner">
-		<img class="Header__banner-img" src={{asset('images/header_banner.png')}} alt="test"/>
-		<div></div>
-	</div>
-	<h1 class="Header__title">LE  GROUPEMENT DE<br/>PROFESSIONNELS À VOS CÔTÉS</h1>
-	<nav class="Header__menu" id="Header__menu">
-		<ul class="Header__menu--section">
-			<li class="Header__menu--section-item">
-				<a class="Header__menu--link" href="{{ path('default') }}">
-					<img class="Header__menu--logo" src="https://nsa40.casimages.com/img/2020/01/09/20010903194855381.png"/>
-				</a>
-			</li>
-			<li class="Header__menu--section-item">
-				<a class="Header__menu--link" href="{{ path('default') }}">ABC</a>
-			</li>
-			{% if is_granted('ROLE_MEMBER') %}
-				<li class="Header__menu--section-item">
+    <button class="burger" id="burger" type="button">
+        <span class="burger__line"></span>
+        <span class="burger__line"></span>
+        <span class="burger__line"></span>
+    </button>
+    <div class="Header__banner">
+        <img class="Header__banner-img" src={{ asset('images/header_banner.png') }} alt="test"/>
+        <div></div>
+    </div>
+    <h1 class="Header__title">LE GROUPEMENT DE<br/>PROFESSIONNELS À VOS CÔTÉS</h1>
+    <nav class="Header__menu" id="Header__menu">
+        <ul class="Header__menu--section">
+            <li class="Header__menu--section-item">
+                <a class="Header__menu--link" href="{{ path('default') }}">
+                    <img class="Header__menu--logo"
+                         src="https://nsa40.casimages.com/img/2020/01/09/20010903194855381.png"/>
+                </a>
+            </li>
+            {% if is_granted('ROLE_ADMIN') %}
+                <li class="Header__menu--section-item">
+					<span class="Menu__list--title">
+						ÉVÉNEMENTS
+						<i class="fas fa-caret-down"></i>
+					</span>
+                    <div class="Menu__list">
+                        <a class="Menu__list--item" href="{{ path('event') }}">Toutes les
+                            événements</a>
+                        <a class="Menu__list--item" href="{{ path('event_add') }}">Créer un événement</a>
+                    </div>
+                </li>
+            {% else %}
+                <li class="Header__menu--section-item">
+                    <a class="Header__menu--link" href="{{ path('event') }}">ÉVÉNEMENTS</a>
+                </li>
+            {% endif %}
+            {% if is_granted('ROLE_MEMBER') %}
+                <li class="Header__menu--section-item">
 					<span class="Menu__list--title">
 						RECOMMANDATIONS
 						<i class="fas fa-caret-down"></i>
 					</span>
-					<div class="Menu__list">
-						<a class="Menu__list--item" href="{{ path('recommendation_list') }}">Toutes les recommandations</a>
-						<a class="Menu__list--item" href="{{ path('recommendation_newstep1') }}">Faire une recommandation</a>
-					</div>
-				</li>
-			{% endif %}
-			<li class="Header__menu--section-item">
-				<a class="Header__menu--link" href="{{ path('member_list') }}">MEMBRES</a>
-			</li>
-			{% if is_granted('ROLE_MEMBER') %}
-				<li class="Header__menu--section-item">
-					<a class="Header__menu--link" href="{{ path('member_profile', { 'id': app.user.id }) }}">PROFIL</a>
-				</li>
-			{% endif %}
-			{% if is_granted('ROLE_ADMIN') %}
-				<li class="Header__menu--section-item">
+                    <div class="Menu__list">
+                        <a class="Menu__list--item" href="{{ path('recommendation_list') }}">Toutes les
+                            recommandations</a>
+                        <a class="Menu__list--item" href="{{ path('recommendation_newstep1') }}">Faire une
+                            recommandation</a>
+                    </div>
+                </li>
+            {% endif %}
+            <li class="Header__menu--section-item">
+                <a class="Header__menu--link" href="{{ path('member_list') }}">MEMBRES</a>
+            </li>
+            {% if is_granted('ROLE_MEMBER') %}
+                <li class="Header__menu--section-item">
+                    <a class="Header__menu--link" href="{{ path('member_profile', { 'id': app.user.id }) }}">PROFIL</a>
+                </li>
+            {% endif %}
+            {% if is_granted('ROLE_ADMIN') %}
+                <li class="Header__menu--section-item">
 					<span class="Menu__list--title">
 						ADMINISTRATION
 						<i class="fas fa-caret-down"></i>
 					</span>
-					<div class="Menu__list">
-						<a class="Menu__list--item" href="{{ path('member_index') }}">Gestion des membres</a>
-						<a class="Menu__list--item" href="{{ path('recommendation_index') }}">Gestion des recommandations</a>
-						<a class="Menu__list--item" href="{{ path('app_register') }}">Inscrire un membre</a>
-					</div>
-				</li>
-			{% endif %}
-			{% if app.user %}
-				<li class="Header__menu--section-item">
-					<a class="Header__menu--section-button" href="{{ path('app_logout') }}">
-						Se déconnecter</a>
-					<p class="Header__menu--section-item-desc">Bonjour
-						{{ app.user.name }}
-						!
-					</p>
-				</li>
-			{% else %}
-				<li class="Header__menu--section-item">
-					<a class="Header__menu--section-button" href="{{ path('app_login') }}">
-						Se connecter</a>
-				</li>
-			{% endif %}
-		</ul>
-	</nav>
+                    <div class="Menu__list">
+                        <a class="Menu__list--item" href="{{ path('member_index') }}">Gestion des membres</a>
+                        <a class="Menu__list--item" href="{{ path('recommendation_index') }}">Gestion des
+                            recommandations</a>
+                        <a class="Menu__list--item" href="{{ path('app_register') }}">Inscrire un membre</a>
+                    </div>
+                </li>
+            {% endif %}
+            {% if app.user %}
+                <li class="Header__menu--section-item">
+                    <a class="Header__menu--section-button" href="{{ path('app_logout') }}">
+                        Se déconnecter</a>
+                    <p class="Header__menu--section-item-desc">Bonjour
+                        {{ app.user.name }}
+                        !
+                    </p>
+                </li>
+            {% else %}
+                <li class="Header__menu--section-item">
+                    <a class="Header__menu--section-button" href="{{ path('app_login') }}">
+                        Se connecter</a>
+                </li>
+            {% endif %}
+        </ul>
+    </nav>
 </header>

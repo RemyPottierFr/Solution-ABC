@@ -2,30 +2,31 @@
 {% block title %}Membres
 {% endblock %}
 {% block body %}
-	<div class="membresPage">
-		<div class="membresPage__head">
-			<span class="membresPage__head-title">Nos membres</span>
-			<p class="membresPage__head-sub-title">
-				Un groupe de professionnel, à votre disposition.
-			</p>
-		</div>
-		<div class="membres">
-			{% for member in members %}
-				<div class="membres__card col-2">
-					<a href="{{ path('member_profile', {id:member.id}) }}">
-						<img class="membres__card-img" src="{{ member.profileImage }}" alt="photo de profile/entreprise"/>
-					</a>
-					<p class="membres__card-name">
-						<a href="{{ path('member_profile', {id:member.id}) }}">
-							{{member.name}}
-						</a>
-					</p>
-					<p class="card-subtitle mb-2 text-muted text-center">{{ member.company }}</p>
-					{% for job in member.getJobs()|slice(0, 1) %}
-						<p class="card-text text-center">{{ job.nameJob }}</p>
-					{% endfor %}
-				</div>
-			{% endfor %}
-		</div>
-	</div>
+    <div class="membresPage">
+        <div class="membresPage__head">
+            <span class="membresPage__head-title">Nos membres</span>
+            <p class="membresPage__head-sub-title">
+                Un groupe de professionnel, à votre disposition.
+            </p>
+        </div>
+        <div class="membres">
+            {% for member in members %}
+                <div class="membres__card col-2">
+                    <a href="{{ path('member_profile', {id:member.id}) }}">
+                        <img class="membres__card-img" src="{{ member.profileImage }}"
+                             alt="photo de profile/entreprise"/>
+                    </a>
+                    <p class="membres__card-name">
+                        <a href="{{ path('member_profile', {id:member.id}) }}">
+                            {{ member.name }}
+                        </a>
+                    </p>
+                    <p class="card-subtitle mb-2 text-muted text-center">{{ member.company }}</p>
+                    {% for job in member.getJobs()|slice(0, 1) %}
+                        <p class="card-text text-center">{{ job.nameJob }}</p>
+                    {% endfor %}
+                </div>
+            {% endfor %}
+        </div>
+    </div>
 {% endblock %}

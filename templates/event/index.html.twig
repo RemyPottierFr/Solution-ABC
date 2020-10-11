@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Les événements ABC{% endblock %}
+
+{% block body %}
+
+    <div>
+        <div class="membresPage__head">
+            <span class="membresPage__head-title">Nos événements</span>
+            <p class="membresPage__head-sub-title">
+                Tous les événements du réseau au même endroit
+            </p>
+        </div>
+        <section class="Event__list">
+            {% for event in events %}
+                <div class="Event__list-item">
+                    <span class="Event__list-item--date">{{ event.date|date("m/d/Y") }}</span>
+                    <span>{{ event.title }}</span>
+                    <a href="{{ event.flyer }}">{{ event.flyer }}</a>
+                    <span>{{ event.recap }}</span>
+                </div>
+            {% endfor %}
+        </section>
+    </div>
+{% endblock %}

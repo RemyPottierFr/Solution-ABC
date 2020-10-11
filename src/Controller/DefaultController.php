@@ -2,17 +2,12 @@
 
 namespace App\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\HttpFoundation\Request;
-use Doctrine\Common\Persistence\ObjectManager;
 use App\Entity\Member;
 use App\Entity\Recommendation;
-use App\Entity\Prestation;
-use App\Entity\Job;
-use App\Repository\RecommendationRepository;
-use App\Repository\MemberRepository;
 use Knp\Component\Pager\PaginatorInterface;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Routing\Annotation\Route;
 
 class DefaultController extends AbstractController
 {
@@ -22,12 +17,12 @@ class DefaultController extends AbstractController
     public function index()
     {
         $members = $this->getDoctrine()
-        ->getRepository(Member::class)
-        ->findAll();
+            ->getRepository(Member::class)
+            ->findAll();
 
         $recommendations = $this->getDoctrine()
-        ->getRepository(Recommendation::class)
-        ->findAll();
+            ->getRepository(Recommendation::class)
+            ->findAll();
 
         return $this->render('default/index.html.twig', [
             'controller_name' => 'DefaultController',
@@ -37,8 +32,8 @@ class DefaultController extends AbstractController
     }
 
     /**
-    * @Route("member/list", name="member_list")
-    */
+     * @Route("member/list", name="member_list")
+     */
     public function memberList()
     {
         $members = $this->getDoctrine()
@@ -50,8 +45,8 @@ class DefaultController extends AbstractController
     }
 
     /**
-    * @Route("/recommendation/list", name="recommendation_list")
-    */
+     * @Route("/recommendation/list", name="recommendation_list")
+     */
     public function recommendationList(PaginatorInterface $paginator, Request $request)
     {
         $recommendations = $this->getDoctrine()
@@ -69,8 +64,8 @@ class DefaultController extends AbstractController
     }
 
     /**
-    * @Route("/profile/{id}", name="member_profile", methods={"GET"})
-    */
+     * @Route("/profile/{id}", name="member_profile", methods={"GET"})
+     */
     public function profile($id)
     {
         $member = $this->getDoctrine()
@@ -104,7 +99,7 @@ class DefaultController extends AbstractController
 
         $variables['ownedRecommendations'] = $ownedRecommendations;
         $variables['targRecommendations'] = $targRecommendations;
-        
+
         $nbPrestationsOwn = count($ownedRecommendations);
         $nbPrestationsTar = count($targRecommendations);
 

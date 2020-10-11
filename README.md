@@ -16,7 +16,7 @@ It is a platform intended to promote the skills of professionals in the ABC netw
 
 1. Clone this project
 2. Run `composer install`
-3. Run `yarn install`  
+3. Run `yarn install`
 
 ### Create Database
 
@@ -26,10 +26,10 @@ It is a platform intended to promote the skills of professionals in the ABC netw
 4. Run `GRANT ALL ON <dbname> . * TO <user>@localhost;`
 5. Move into the directory and `cp .env .env.local` file. This one is not committed to the shared repository. Set db_name to your database name.
 6. Configure the service mailer like this :
-      - ###> symfony/mailer ###
-      - MAILER_DSN=smtp://reseauabc:passwordAdmin@smtp.exemple.com:999
-      - ###< symfony/mailer ###
-      - MAILER_FROM_ADDRESS=exemple@exemple.com
+   - ###> symfony/mailer ###
+   - MAILER_DSN=smtp://reseauabc:passwordAdmin@smtp.exemple.com:999
+   - ###< symfony/mailer ###
+   - MAILER_FROM_ADDRESS=exemple@exemple.com
 7. Change the user and the password in the same file by your MySQL user and password.
 8. Run `php bin/console m:m`
 9. Run `php bin/console d:m:m`
@@ -46,8 +46,8 @@ It is a platform intended to promote the skills of professionals in the ABC netw
 1. Run `./bin/phpcs` to launch PHP code sniffer
 2. Run `./bin/phpstan analyse src --level max` to launch PHPStan
 3. Run `./bin/phpmd src text phpmd.xml` to launch PHP Mess Detector
-3. Run `./bin/eslint assets/js` to launch ESLint JS linter
-3. Run `./bin/sass-lint -c sass-linter.yml` to launch Sass-lint SASS/CSS linter
+4. Run `./bin/eslint assets/js` to launch ESLint JS linter
+5. Run `./bin/sass-lint -c sass-linter.yml` to launch Sass-lint SASS/CSS linter
 
 ### Windows Users
 
@@ -61,15 +61,15 @@ Launch the server with the command below and follow the instructions on the home
 
 `symfony server:start`
 
-
 ## Built With
 
-* [Symfony](https://github.com/symfony/symfony)
-* [GrumPHP](https://github.com/phpro/grumphp)
-* [PHP_CodeSniffer](https://github.com/squizlabs/PHP_CodeSniffer)
-* [PHPStan](https://github.com/phpstan/phpstan)
-* [PHPMD](http://phpmd.org)
-* [ESLint](https://eslint.org/)
-* [Sass-Lint](https://github.com/sasstools/sass-lint)
-* [Travis CI](https://github.com/marketplace/travis-ci)
+- [Symfony](https://github.com/symfony/symfony)
+- [GrumPHP](https://github.com/phpro/grumphp)
+- [PHP_CodeSniffer](https://github.com/squizlabs/PHP_CodeSniffer)
+- [PHPStan](https://github.com/phpstan/phpstan)
+- [PHPMD](http://phpmd.org)
+- [ESLint](https://eslint.org/)
+- [Sass-Lint](https://github.com/sasstools/sass-lint)
+- [Travis CI](https://github.com/marketplace/travis-ci)
+
 # Solution-ABC

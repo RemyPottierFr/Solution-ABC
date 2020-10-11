@@ -10,6 +10,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 /**
  * @Route("/member")
@@ -70,22 +71,34 @@ class MemberController extends AbstractController
     /**
      * @IsGranted("ROLE_MEMBER")
      * @Route("/{id}/edit", name="member_edit", methods={"GET","POST"})
+     * @param Request $request
+     * @param Member $member
+     * @param UserPasswordEncoderInterface $passwordEncoder
      */
-    public function edit(Request $request, Member $member): Response
-    {
+    public function edit(
+        Request $request,
+        Member $member,
+        UserPasswordEncoderInterface $passwordEncoder
+    ): Response {
         $form = $this->createForm(MemberType::class, $member);
         $form->handleRequest($request);
 
-        if (!in_array("ROLE_ADMIN", $this->getUser()->getRoles())) {
-            if ($this->getUser()->getId() !== $member->getId()) {
-                return $this->redirectToRoute('default');
-            }
+        if (!in_array("ROLE_ADMIN", $this->getUser()->getRoles()) && $this->getUser()->getId() !== $member->getId()) {
+            return $this->redirectToRoute('default');
         }
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
+            $member->setPassword(
+                $passwordEncoder->encodePassword(
+                    $member,
+                    $form->get('plainPassword')->getData()
+                )
+            );
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($member);
+            $entityManager->flush();
 
-            return $this->redirectToRoute('member_index');
+            return $this->redirectToRoute('member_profile', array('id' => $member->getId()));
         }
 
         return $this->render('member/edit.html.twig', [

@@ -11,7 +11,7 @@
         </div>
         <div class="membres">
             {% for member in members %}
-                <div class="membres__card col-2">
+                <div class="membres__card">
                     <a href="{{ path('member_profile', {id:member.id}) }}">
                         <img class="membres__card-img" src="{{ member.profileImage }}"
                              alt="photo de profile/entreprise"/>

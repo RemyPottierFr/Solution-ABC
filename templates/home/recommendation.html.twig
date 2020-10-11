@@ -9,10 +9,10 @@
             {% for recommendation in recommendations %}
                 <div class="card_reco col-sm-12 col-xl-5 mx-auto border mt-3 mr">
                     <div class="row mt-3 block_card">
-                        <img class="col-4 img_member_reco" src="{{ recommendation.owner.profileImage }}"
+                        <img class="col-4" src="{{ recommendation.owner.profileImage }}"
                              alt="photo de profile/entreprise"/>
                         <div class="arrow"></div>
-                        <img class="col-4 img_member_reco" src="{{ recommendation.target.profileImage }}"
+                        <img class="col-4" src="{{ recommendation.target.profileImage }}"
                              alt="photo de profile/entreprise"/>
                     </div>
                     <div class="row mt-1 text-center">

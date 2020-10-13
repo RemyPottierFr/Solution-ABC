@@ -3,9 +3,9 @@ env:
   es6: true
   node: true
 extends:
-  - 'eslint:recommended'
-  - 'airbnb'
-  - 'plugin:react/recommended'
+  - "eslint:recommended"
+  - "airbnb"
+  - "plugin:react/recommended"
 globals:
   Atomics: readonly
   SharedArrayBuffer: readonly
@@ -14,7 +14,4 @@ parserOptions:
   sourceType: module
   ecmaFeatures:
     jsx: true
-rules: {
-  no-console: 'error',
-  indent: ['error', 4]
-}
+rules: { no-console: "error", indent: ["error", 4] }

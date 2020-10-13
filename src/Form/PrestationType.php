@@ -2,8 +2,8 @@
 
 namespace App\Form;
 
-use App\Entity\Prestation;
 use App\Entity\Job;
+use App\Entity\Prestation;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -22,7 +22,7 @@ class PrestationType extends AbstractType
             ]);
         $options;
     }
-    
+
 
     public function configureOptions(OptionsResolver $resolver)
     {

@@ -1,25 +1,26 @@
 {% block body %}
-<div class="container mt-5">
-    <div class="row">
-        <div class="card_reco col-sm-12 col-xl-5 mx-auto border mt-3 mr"> 
-            <div class="row mt-3 block_card">               
-                <h1>Bonjour {{ target.name }}</h1></br>
-            </div>
-            <div class="row mt-1 text-center"> 
-                <h2 class="col-6 name_member_h2">
-                    Vous avez reçu une recommendation du réseau ABC</br></br></br>
-                    Pour le client : {{ clientName }}</br></br>
-                    Contact : {{ infoClient }}</br>
-                </h2>
-                <h4 class="col-6 name_member_h4">
-                    <p>Le professionnel {{ owner.name }} du réseau ABC vous a recommandé pour la(les) prestation(s) de : </br></p>      
-                    {% for prestation in prestations %}
-                    <p>- {{ prestation.name }}</p>
-                    {% endfor %}
-                    <p>Le professionnel {{ owner.name }} vous a laissé un message : </br>{{ comment }}</p>
-                </h4>
+    <div class="container mt-5">
+        <div class="row">
+            <div class="card_reco col-sm-12 col-xl-5 mx-auto border mt-3 mr">
+                <div class="row mt-3 block_card">
+                    <h1>Bonjour {{ target.name }}</h1></br>
+                </div>
+                <div class="row mt-1 text-center">
+                    <h2 class="col-6 name_member_h2">
+                        Vous avez reçu une recommendation du réseau ABC</br></br></br>
+                        Pour le client : {{ clientName }}</br></br>
+                        Contact : {{ infoClient }}</br>
+                    </h2>
+                    <h4 class="col-6 name_member_h4">
+                        <p>Le professionnel {{ owner.name }} du réseau ABC vous a recommandé pour la(les) prestation(s)
+                            de : </br></p>
+                        {% for prestation in prestations %}
+                            <p>- {{ prestation.name }}</p>
+                        {% endfor %}
+                        <p>Le professionnel {{ owner.name }} vous a laissé un message : </br>{{ comment }}</p>
+                    </h4>
+                </div>
             </div>
         </div>
     </div>
-</div>
 {% endblock %}

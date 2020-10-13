@@ -26,7 +26,6 @@ use Symfony\Component\Security\Http\Util\TargetPathTrait;
  *
  * @SuppressWarnings(PHPMD.CouplingBetweenObjects)
  */
-
 class LoginFormAuthenticator extends AbstractFormLoginAuthenticator implements PasswordAuthenticatedInterface
 {
     use TargetPathTrait;
@@ -41,7 +40,8 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator implements P
         UrlGeneratorInterface $urlGenerator,
         CsrfTokenManagerInterface $csrfTokenManager,
         UserPasswordEncoderInterface $passwordEncoder
-    ) {
+    )
+    {
         $this->entityManager = $entityManager;
         $this->urlGenerator = $urlGenerator;
         $this->csrfTokenManager = $csrfTokenManager;
@@ -68,7 +68,7 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator implements P
 
         return $credentials;
     }
-    
+
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, $providerKey)
     {
         $token;
@@ -91,7 +91,7 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator implements P
         }
 
         $user = $this->entityManager
-                     ->getRepository(Member::class)->findOneBy(['registerEmail' => $credentials['registerEmail']]);
+            ->getRepository(Member::class)->findOneBy(['registerEmail' => $credentials['registerEmail']]);
 
         if (!$user) {
             // fail authentication with a custom error

@@ -1,113 +1,123 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-<div class="bg-white shadow rounded overflow-hidden">
-      <div class="px-4 pt-0 pb-4 bg-dark">
+    <div class="bg-white shadow rounded overflow-hidden">
+        <div class="px-4 pt-0 pb-4 bg-dark">
             <div class="media align-items-end profile-header">
-                  <div class="profile mr-6"><img src="{{ member.profileImage }}" 
-                        alt="Profile Image" width="130" class="rounded mb-2 img-thumbnail">
-                        {% if is_granted('ROLE_MEMBER') %}
-                              {% if member.id == user.id %}
-                                    <a href="{{ path('member_edit', {'id': member.id}) }}" class="btn btn-dark btn-sm btn-block">Éditer le profil</a>
-                                    <a href="{{ path('prestation_new')}}" class="btn btn-dark btn-sm btn-block">Ajouter une prestation</a>
-                              {% endif %}
+                <div class="profile mr-6"><img src="{{ member.profileImage }}"
+                                               alt="Profile Image" width="130" class="rounded mb-2 img-thumbnail">
+                    {% if is_granted('ROLE_MEMBER') %}
+                        {% if member.id == user.id %}
+                            <a href="{{ path('member_edit', {'id': member.id}) }}"
+                               class="btn btn-dark btn-sm btn-block">Éditer le profil</a>
+                            <a href="{{ path('prestation_new') }}" class="btn btn-dark btn-sm btn-block">Ajouter une
+                                prestation</a>
                         {% endif %}
-                  </div>
-                  <div class="media-body mb-5 text-white">
-                        <h4 class="mt-0 mb-1">{{ member.name}}</h4>
-                        <p class="small mb-1"> <i class="fa fa-map-marker mr-2"></i>{{ member.company }}</p>
-                        <p class="small mb-1"> <i class="fa fa-map-marker mr-2"></i>{{ member.workingLocation }}</p>
-                        <p class="small mb-1"> <i class="fa fa-map-marker mr-2"></i>{{ member.postCode }}</p>
-                        <p class="small mb-4"> <i class="fa fa-map-marker mr-2"></i>{{ member.phoneNumber }}</p>
-                  </div>
+                    {% endif %}
+                </div>
+                <div class="media-body mb-5 text-white">
+                    <h4 class="mt-0 mb-1">{{ member.name }}</h4>
+                    <p class="small mb-1"><i class="fa fa-map-marker mr-2"></i>{{ member.company }}</p>
+                    <p class="small mb-1"><i class="fa fa-map-marker mr-2"></i>{{ member.workingLocation }}</p>
+                    <p class="small mb-1"><i class="fa fa-map-marker mr-2"></i>{{ member.postCode }}</p>
+                    <p class="small mb-4"><i class="fa fa-map-marker mr-2"></i>{{ member.phoneNumber }}</p>
+                </div>
             </div>
-      </div>
-      
-      <div class="bg-light p-4 d-flex justify-content-center text-center">
-      </br>
-      </br>
-                  {% for job in jobs %}
-            <div class="card justify-content-space-around carte" style="width: 18rem; margin: 1rem;">
-                  <div class="card-body">
+        </div>
+
+        <div class="bg-light p-4 d-flex justify-content-center text-center">
+            </br>
+            </br>
+            {% for job in jobs %}
+                <div class="card justify-content-space-around carte" style="width: 18rem; margin: 1rem;">
+                    <div class="card-body">
                         <h4 class="mt-0 mb-1">{{ job.nameJob }}</h4>
                         {% set prestationsOfThatJob = prestationsOfAllJobs[loop.index0] %}
-                        <p class="small mb-1"> <i class="fa fa-map-marker mr-2"></i>Avec la(es) prestation(s) suivante(s) :</p>
+                        <p class="small mb-1"><i class="fa fa-map-marker mr-2"></i>Avec la(es) prestation(s) suivante(s)
+                            :</p>
                         {% for prestation in prestationsOfThatJob %}
-                        <p class="small mb-1"> <i class="fa fa-map-marker mr-2"></i>- {{ prestation.name }}</p>
+                            <p class="small mb-1"><i class="fa fa-map-marker mr-2"></i>- {{ prestation.name }}</p>
                         {% endfor %}
-                  </div>
-            </div>
-                  {% endfor %}
-      </div>
-      <ul class="list-inline mb-0 doreco">
-                  <li class="list-inline-item">Recommandations reçues <b>{{ nbPrestationsTar }}</b></li>
-                  <li class="list-inline-item">Recommandations émises <b>{{ nbPrestationsOwn }}</b></li>
-                  {% if is_granted('ROLE_MEMBER') %}
-                  <a href="{{ path('recommendation_newstep1')}}" class="btn btn-dark btn-sm btn-block">Faire une recommandation</a>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        <ul class="list-inline mb-0 doreco">
+            <li class="list-inline-item">Recommandations reçues <b>{{ nbPrestationsTar }}</b></li>
+            <li class="list-inline-item">Recommandations émises <b>{{ nbPrestationsOwn }}</b></li>
+            {% if is_granted('ROLE_MEMBER') %}
+                <a href="{{ path('recommendation_newstep1') }}" class="btn btn-dark btn-sm btn-block">Faire une
+                    recommandation</a>
             {% endif %}
-      </ul>
-      <div class="contenant">
+        </ul>
+        <div class="contenant">
             <div class="container mt-5">
-            <h2>Recommandations reçues</h2>
-                  <div class="row scrool">
-                        {% for targRecommendation in targRecommendations %}
-                                    <div class="card_reco col-sm-12 col-xl-12 mx-auto border mt-3 mr">
-                                          <div class="alignItem row mt-3">
-                                                <p class="leftText"><i>Émise par : {{ targRecommendation.owner.name }}</i></p>
-                                                <div class="rightElement">
-                                                      {% if targRecommendation.status == false %}
-                                                      <h3><span class="badge badge-warning item-right">En cours</span></h3>
-                                                      {% endif %}
-                                                      {% if targRecommendation.status == true %}
-                                                      <h3><span class="badge badge-success item-right">Effectué</span></h3>
-                                                      {% endif %}
-                                                      <div class="rightItem">
-                                                      {% if user and member.id == user.id %} 
-                                                      <a href="{{ path('recommendation_status', {id:targRecommendation.id}) }}"><h6><span class="badge badge-secondary">edit</span></h6></a>
-                                                      {% endif %}
-                                                      </div>
-                                                </div>
-                                          </div>
-                                          <div>
-                                                <div class="clientInfo">
-                                                {% if user and member.id == user.id %}
-                                                      <p>Le client : <b>{{ targRecommendation.clientName }}</b></p>
-                                                      <p>Commentaire : {{ targRecommendation.comment }}</p>
-                                                      <p>Contact : <b>{{ targRecommendation.infoClient }}</b></p>
-                                                {% endif %}
-                                                </div>
-                                          </div>      
-                                    </div>
-                        {% endfor %}
-                  </div>
-            </div>
-      </div>
-      <div class="container mt-5">
-            <h2>Recommandations émises</h2>
-            <div class="row scrool">
-                  {% for ownedRecommendation in ownedRecommendations %}
-                              <div class="card_reco col-sm-12 col-xl-12 mx-auto border mt-3 mr"> 
-                                    <div class="alignItem row mt-3">
-                                          <p class="leftText"><i>Pour le professionnel : {{ ownedRecommendation.target.name }}</i></p>
-                                          <div class="rightElement">
-                                                {% if ownedRecommendation.status == false %}
-                                                <h3><span class="badge badge-warning item-right">En cours</span></h3>
-                                                {% endif %}
-                                                {% if ownedRecommendation.status == true %}
-                                                <h3><span class="badge badge-success item-right">Effectué</span></h3>
-                                                {% endif %}
-                                          </div>
-                                    </div>
-                                    <div class="clientInfo"> 
-                                    {% if user and member.id == user.id %}
-                                          <p>Le client : <b>{{ ownedRecommendation.clientName }}</b></p>
-                                          <p>Commentaire : {{ ownedRecommendation.comment }}</p>
-                                          <p>Contact : <b>{{ ownedRecommendation.infoClient }}</b></p>
+                <h2>Recommandations reçues</h2>
+                <div class="row scroll">
+                    {% for targRecommendation in targRecommendations %}
+                        <div class="card_reco col-sm-12 col-xl-12 mx-auto border mt-3 mr">
+                            <div class="alignItem row mt-3">
+                                <p class="leftText"><i>Émise par : {{ targRecommendation.owner.name }}</i></p>
+                                <div class="rightElement">
+                                    {% if targRecommendation.status == false %}
+                                        <h3><span class="badge badge-warning item-right">En cours</span></h3>
                                     {% endif %}
+                                    {% if targRecommendation.status == true %}
+                                        <h3><span class="badge badge-success item-right">Effectué</span></h3>
+                                    {% endif %}
+                                    BROSSE BOULE
+                                    <div class="rightItem">
+                                        {# {% if user and member.id == user.id %} #}
+                                        <a href="{{ path('recommendation_status', {id:targRecommendation.id}) }}">
+                                            <h6><span class="badge badge-secondary">edit</span></h6>
+                                        </a>
+                                        {# {% endif %} #}
                                     </div>
-                              </div>        
-                  {% endfor %}
+                                </div>
+                            </div>
+                            <div>
+                                <div class="clientInfo">
+                                    {% if user and member.id == user.id %}
+                                        <p>Le client : <b>{{ targRecommendation.clientName }}</b></p>
+                                        <p>Commentaire : {{ targRecommendation.comment }}</p>
+                                        <p>Contact : <b>{{ targRecommendation.infoClient }}</b></p>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
             </div>
-      </div>
-</div>
+        </div>
+        <div class="container mt-5">
+            <h2>Recommandations émises</h2>
+            <div class="row scroll">
+                {% for ownedRecommendation in ownedRecommendations %}
+                    <div class="card_reco col-sm-12 col-xl-12 mx-auto border mt-3 mr">
+                        <div class="alignItem row mt-3">
+                            <p class="leftText"><i>Pour le professionnel : {{ ownedRecommendation.target.name }}</i></p>
+                            <div class="rightElement">
+                                {% if ownedRecommendation.status == false %}
+                                    <h3><span class="badge badge-warning item-right">En cours</span></h3>
+                                {% endif %}
+                                {% if ownedRecommendation.status == true %}
+                                    <h3><span class="badge badge-success item-right">Effectué</span></h3>
+                                {% endif %}
+                                <a href="{{ path('recommendation_little_edit', {id:ownedRecommendation.id}) }}">
+                                    <h6><span class="badge badge-secondary">edit</span></h6>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="clientInfo">
+                            {% if user and member.id == user.id %}
+                                <p>Le client : <b>{{ ownedRecommendation.clientName }}</b></p>
+                                <p>Commentaire : {{ ownedRecommendation.comment }}</p>
+                                <p>Contact : <b>{{ ownedRecommendation.infoClient }}</b></p>
+                            {% endif %}
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
 {% endblock %}

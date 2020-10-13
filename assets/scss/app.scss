@@ -26,6 +26,7 @@ nav {
   width: 100vw;
   background: rgba(55, 50, 81, 0.7);
   position: relative;
+  z-index: 100;
 }
 
 .burger {
@@ -275,8 +276,15 @@ nav {
 }
 
 .MemberCaroussel__content--profile-photo {
-  width: 100% !important;
-  border-radius: 50%;
+  width: 200px;
+  height: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.MemberCaroussel__content--profile-photo img{
+  width: 100%;
+  height: auto;
 }
 
 .MemberCaroussel__content--profile-content-company {
@@ -439,7 +447,6 @@ nav {
 .lastReco__row--item-profile {
   width: 200px;
   height: 200px;
-  border-radius: 50%;
 }
 
 .lastReco__row--item-name {
@@ -455,12 +462,10 @@ nav {
 }
 
 .membres {
-  display: flex;
-  justify-content: space-around;
-  flex-wrap: wrap;
-  padding: 20px;
-  padding-top: 60px;
-  padding-bottom: 60px;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-gap: 32px;
+  padding: 60px 20px;
 }
 
 .membresPage__head {
@@ -511,7 +516,6 @@ nav {
 }
 
 .img_profile {
-  border-radius: 50%;
   height: 10rem;
 }
 
@@ -523,10 +527,6 @@ nav {
   background: #f8f9fa;
   box-shadow: 0 0.2rem 0.3rem -0.2rem gray;
   border-radius: 0.2rem;
-}
-
-.img_member_reco {
-  border-radius: 50%;
 }
 
 .card_connect {
@@ -570,11 +570,10 @@ nav {
 }
 
 .arrow {
-  background-image: url("../../public/images/arrow.png");
-  background-size: contain;
   height: 5rem;
   width: 5rem;
-  align-self: center;
+  display: flex;
+  align-items: center;
 }
 
 .block_card {
@@ -609,10 +608,7 @@ nav {
 }
 
 .membres__card {
-  padding-top: 1rem;
-  margin: 1rem;
-  margin-top: 40px;
-  border-radius: 0.2rem;
+  width: 100%;
   text-align: center;
 }
 
@@ -628,14 +624,13 @@ nav {
 }
 
 .MemberCaroussel__row {
-  align-items: center;
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
 .image_profile {
-  border-radius: 50%;
-  height: 64px;
-  width: auto;
+  width: 64px;
+  height: auto;
 }
 
 .memberList__title {
@@ -669,6 +664,7 @@ nav {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
+  align-items: center;
 }
 
 .memberList__line-item-link {
@@ -698,7 +694,7 @@ nav {
   display: flex;
 }
 
-.scrool {
+.scroll {
   height: 30rem;
   overflow: auto;
   padding: 2rem;
@@ -734,10 +730,6 @@ nav {
 .rightItem {
   float: right;
 }
-
-// @media (max-width: 1024px){
-
-// }
 
 @media screen and (max-width: 740px) {
   .carousel_member_home {
@@ -788,6 +780,7 @@ nav {
 
   .MemberCaroussel__content--profile {
     margin-bottom: 16px;
+    height: 100%;
   }
 
   .burger {
@@ -826,4 +819,42 @@ nav {
   .BeMember__title {
     font-size: 60px;
   }
+}
+
+.Event__form{
+  margin:60px;
+}
+.Event__list{
+  margin:60px;
+  display:grid;
+  grid-column: 1;
+  grid-row-gap: 12px;
+}
+
+.Event__list-item{
+  display:flex;
+  flex-wrap: nowrap;
+  font-size: 1.2rem;
+  color:black;
+  box-shadow: 0px 0px 2px 0px rgba(15,15,15,1);
+  border-radius: 4px;
+  padding: 8px 12px;
+}
+
+.Event__list-item span{
+  margin: 0 8px;
+}
+
+.Event__list-item--date{
+  color:#8C77C6;
+}
+
+.btn-add{
+  background: #8C77C6;
+  color:white;
+  text-transform: uppercase;
+}
+
+.cursor-pointer{
+  cursor: pointer;
 }

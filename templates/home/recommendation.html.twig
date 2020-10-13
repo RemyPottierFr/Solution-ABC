@@ -3,29 +3,58 @@
 {% block title %}Recommandations
 {% endblock %}
 {% block body %}
-	<div class="container mt-5">
-		<h2 class="text-center">Toutes les recommandations du réseau ABC</h2>
-		<div class="row">
-			{% for recommendation in recommendations %}
-				<div class="card_reco col-sm-12 col-xl-5 mx-auto border mt-3 mr">
-					<div class="row mt-3 block_card">
-						<img class="col-4 img_member_reco" src="{{ recommendation.owner.profileImage }}" alt="photo de profile/entreprise"/>
-						<div class="arrow"></div>
-						<img class="col-4 img_member_reco" src="{{ recommendation.target.profileImage }}" alt="photo de profile/entreprise"/>
-					</div>
-					<div class="row mt-1 text-center">
-						<h4 class="col-6 name_member_h4">
-							{{ recommendation.owner.name }}
-						</h4>
-						<h4 class="col-6 name_member_h4">
-							{{ recommendation.target.name }}
-						</h4>
-					</div>
-				</div>
-			{% endfor %}
-		</div>
-		<nav class="paginate mt-5" aria-label="Page navigation">
-			{{ knp_pagination_render(recommendations) }}
-		</nav>
-	</div>
+    <div class="container mt-5">
+        <h2 class="text-center">Toutes les recommandations du réseau ABC</h2>
+        <div class="row">
+            {% for recommendation in recommendations %}
+                <div class="card_reco col-sm-12 col-xl-5 mx-auto border mt-3 d-flex flex-column justify-content-center">
+                    <div class="d-flex flex-row flex-nowrap mt-3 block_card w-100">
+                        <div class="col-3">
+                            <img class="w-100 h-auto" src="{{ recommendation.owner.profileImage }}"
+                                 alt="photo de profile/entreprise" />
+                        </div>
+                        <div class="arrow">
+                            <img class="w-100 h-auto" src="/images/arrow.png" alt="arrow" />
+                        </div>
+                        <div class="col-3">
+                            <img class="w-100 h-auto" src="{{ recommendation.target.profileImage }}"
+                                 alt="photo de profile/entreprise" />
+                        </div>
+                        {% if recommendation.displayClient %}
+                            <div class="arrow">
+                                <img class="w-100 h-auto" src="/images/arrow.png" alt="arrow" />
+                            </div>
+                            <div class="col-3 d-flex flex-column align-items-center justify-content-center text-center">
+                                <h4>Pour le client</h4>
+                                <span>{{ recommendation.infoClient }}</span>
+                            </div>
+                        {% endif %}
+                    </div>
+                    <div class="row mt-1 text-center">
+                        {% if recommendation.displayClient %}
+                            <h4 class="col-4 name_member_h4">
+                                {{ recommendation.owner.name }}
+                            </h4>
+                            <h4 class="col-4 name_member_h4">
+                                {{ recommendation.target.name }}
+                            </h4>
+                            <h4 class="col-4 name_member_h4">
+                                {{ recommendation.clientName }}
+                            </h4>
+                        {% else %}
+                            <h4 class="col-6 name_member_h4">
+                                {{ recommendation.owner.name }}
+                            </h4>
+                            <h4 class="col-6 name_member_h4">
+                                {{ recommendation.target.name }}
+                            </h4>
+                        {% endif %}
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        <nav class="paginate mt-5" aria-label="Page navigation">
+            {{ knp_pagination_render(recommendations) }}
+        </nav>
+    </div>
 {% endblock %}

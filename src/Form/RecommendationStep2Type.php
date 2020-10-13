@@ -2,11 +2,11 @@
 
 namespace App\Form;
 
-use App\Entity\Job;
-use App\Entity\Recommendation;
 use App\Entity\Prestation;
+use App\Entity\Recommendation;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -19,12 +19,12 @@ class RecommendationStep2Type extends AbstractType
             ->add('clientName')
             ->add('infoClient')
             ->add('prestations', EntityType::class, [
-                  'choices' => $options['prestations'],
-                  'class' => Prestation::class,
-                  'choice_label' => 'name',
-                  'multiple' => true
-              ]);
-        ;
+                'choices' => $options['prestations'],
+                'class' => Prestation::class,
+                'choice_label' => 'name',
+                'multiple' => true
+            ])
+            ->add('displayClient', CheckboxType::class, ['label'=>'Afficher le client sur la recommendation']);
         $options;
     }
 

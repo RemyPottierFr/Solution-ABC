@@ -112,4 +112,22 @@ class Job
 
         return $this;
     }
+
+    public function addMember(Member $member): self
+    {
+        if (!$this->members->contains($member)) {
+            $this->members[] = $member;
+        }
+
+        return $this;
+    }
+
+    public function removeMember(Member $member): self
+    {
+        if ($this->members->contains($member)) {
+            $this->members->removeElement($member);
+        }
+
+        return $this;
+    }
 }

@@ -4,67 +4,67 @@
 
 {% block body %}
     <div class="container formulaire">
-   <h1 class="formulaire_h1 mt-5">Ajouter un professionnel</h1>
+        <h1 class="formulaire_h1 mt-5">Ajouter un professionnel</h1>
 
-    {{ form_start(form) }}
+        {{ form_start(form) }}
 
-   <div class="row formulaire_div">
-      <div class="form-group col-12 col-xl-6 mx-auto">
-         {{ form_label(form.name, 'Nom et prénom') }}
-         {{ form_widget(form.name, {'attr':{'class':'form-control border border-dark'}}) }}
-      </div> 
-   </div>
-   <div class="row formulaire_div">
-      <div class="form-group col-12 col-xl-6 mx-auto">
-         {{ form_label(form.company, 'Entreprise') }}
-         {{ form_widget(form.company, {'attr':{'class':'form-control border border-dark'}}) }}
-      </div>
-   </div>
-   <div class="row formulaire_div">
-      <div class="form-group col-12 col-xl-6 mx-auto">
-         {{ form_label(form.phonenumber, 'Téléphone') }}
-         {{ form_widget(form.phonenumber, {'attr':{'class':'form-control border border-dark'}}, {'attr': {'placeholder': '06 59 63 03 26'}}) }}
-      </div>
-   </div>
-   <div class="row formulaire_div">
-      <div class="form-group col-12 col-xl-6 mx-auto">
-         {{ form_label(form.workingLocation, 'Adresse de l\'entreprise') }}
-         {{ form_widget(form.workingLocation, {'attr':{'class':'form-control border border-dark'}}) }}
-      </div>
-   </div>
-   <div class="row formulaire_div">
-      <div class="form-group col-12 col-xl-6 mx-auto">
-            {{ form_label(form.postCode, 'Code postal de l\'entreprise') }}
-            {{ form_widget(form.postCode, {'attr':{'class':'form-control border border-dark'}}) }}
-      </div> 
-   </div>
-   <div class="row formulaire_div">
-      <div class="form-group col-12 col-xl-6 mx-auto">
-            {{ form_label(form.city, 'Ville de l\'entreprise') }}
-            {{ form_widget(form.city, {'attr':{'class':'form-control border border-dark'}}) }}
-      </div> 
-   </div>
-   <div class="row formulaire_div">
-      <div class="form-group col-12 col-xl-6 mx-auto">
-         {{ form_label(form.profileImage, 'Image de profil') }}
-         {{ form_widget(form.profileImage, {'attr':{'class':'form-control border border-dark'}}) }}
-      </div>
-   </div>
-   <div class="row formulaire_div">
-      <div class="form-group col-12 col-xl-6 mx-auto">
-         {{ form_label(form.jobs, 'Prestation') }}
-         {{ form_widget(form.jobs) }}
-      </div>
-   </div>
+        <div class="row formulaire_div">
+            <div class="form-group col-12 col-xl-6 mx-auto">
+                {{ form_label(form.name, 'Nom et prénom') }}
+                {{ form_widget(form.name, {'attr':{'class':'form-control border border-dark'}}) }}
+            </div>
+        </div>
+        <div class="row formulaire_div">
+            <div class="form-group col-12 col-xl-6 mx-auto">
+                {{ form_label(form.company, 'Entreprise') }}
+                {{ form_widget(form.company, {'attr':{'class':'form-control border border-dark'}}) }}
+            </div>
+        </div>
+        <div class="row formulaire_div">
+            <div class="form-group col-12 col-xl-6 mx-auto">
+                {{ form_label(form.phonenumber, 'Téléphone') }}
+                {{ form_widget(form.phonenumber, {'attr':{'class':'form-control border border-dark'}}, {'attr': {'placeholder': '06 59 63 03 26'}}) }}
+            </div>
+        </div>
+        <div class="row formulaire_div">
+            <div class="form-group col-12 col-xl-6 mx-auto">
+                {{ form_label(form.workingLocation, 'Adresse de l\'entreprise') }}
+                {{ form_widget(form.workingLocation, {'attr':{'class':'form-control border border-dark'}}) }}
+            </div>
+        </div>
+        <div class="row formulaire_div">
+            <div class="form-group col-12 col-xl-6 mx-auto">
+                {{ form_label(form.postCode, 'Code postal de l\'entreprise') }}
+                {{ form_widget(form.postCode, {'attr':{'class':'form-control border border-dark'}}) }}
+            </div>
+        </div>
+        <div class="row formulaire_div">
+            <div class="form-group col-12 col-xl-6 mx-auto">
+                {{ form_label(form.city, 'Ville de l\'entreprise') }}
+                {{ form_widget(form.city, {'attr':{'class':'form-control border border-dark'}}) }}
+            </div>
+        </div>
+        <div class="row formulaire_div">
+            <div class="form-group col-12 col-xl-6 mx-auto">
+                {{ form_label(form.profileImage, 'Image de profil') }}
+                {{ form_widget(form.profileImage, {'attr':{'class':'form-control border border-dark'}}) }}
+            </div>
+        </div>
+        <div class="row formulaire_div">
+            <div class="form-group col-12 col-xl-6 mx-auto">
+                {{ form_label(form.jobs, 'Prestation') }}
+                {{ form_widget(form.jobs) }}
+            </div>
+        </div>
 
-   <div class="row">  
-      <button type="submit" class="btn btn-dark mx-auto">{{ button_label|default('Envoyer') }}</button>
-   </div>
+        <div class="row">
+            <button type="submit" class="btn btn-dark mx-auto">{{ button_label|default('Envoyer') }}</button>
+        </div>
 
-    {{ form_end(form) }}
+        {{ form_end(form) }}
 
-    <a href="{{ path('member_index') }}">Retour à la liste</a>
+        <a href="{{ path('member_index') }}">Retour à la liste</a>
 
-</div>   
+    </div>
 {% endblock %}
 

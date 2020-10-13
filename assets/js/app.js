@@ -6,29 +6,28 @@
  */
 
 // any CSS you require will output into a single css file (app.css in this case)
-require('../scss/app.scss');
+require("../scss/app.scss");
 
 // Need jQuery? Install it with "yarn add jquery", then uncomment to require it.
 // const $ = require('jquery');
-require('bootstrap');
+require("bootstrap");
 
 // or you can include specific pieces
 // require('bootstrap/js/dist/tooltip');
 // require('bootstrap/js/dist/popover');
 
-const burger = document.getElementById('burger');
-const headerMenu = document.getElementById('Header__menu');
+const burger = document.getElementById("burger");
+const headerMenu = document.getElementById("Header__menu");
 
-burger.onclick = () => headerMenu.classList.toggle('hidden');
+burger.onclick = () => headerMenu.classList.toggle("hidden");
 
 const menuForScreen = () => {
   if (window.matchMedia("(max-width: 740px)").matches) {
-    headerMenu.classList.add('hidden');
+    headerMenu.classList.add("hidden");
+  } else {
+    headerMenu.classList.remove("hidden");
   }
-  else {
-    headerMenu.classList.remove('hidden');
-  }
-}
+};
 
 window.addEventListener("resize", () => menuForScreen());
 

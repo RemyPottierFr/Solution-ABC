@@ -3,11 +3,18 @@
 {% block title %}Édition des recommandations{% endblock %}
 
 {% block body %}
-    <h1>Édition des recommandations</h1>
+    <div>
+        <div class="membresPage__head">
+            <span class="membresPage__head-title">Édition des recommandations</span>
+        </div>
 
-    {{ include('recommendation/_form.html.twig', {'button_label': 'Update'}) }}
+        <div class="container my-5">
+            {{ include('recommendation/_form.html.twig', {'button_label': 'Update'}) }}
+            <div class="row flex-column d-flex">
+                <a href="{{ path('recommendation_index') }}">Retour à la liste des recommandations</a>
+                {{ include('recommendation/_delete_form.html.twig') }}
+            </div>
+        </div>
 
-    <a href="{{ path('recommendation_index') }}">back to list</a>
-
-    {{ include('recommendation/_delete_form.html.twig') }}
+    </div>
 {% endblock %}

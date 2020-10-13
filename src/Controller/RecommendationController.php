@@ -3,21 +3,21 @@
 namespace App\Controller;
 
 use App\Entity\Recommendation;
-use App\Form\RecommendationType;
 use App\Form\RecommendationStep1Type;
 use App\Form\RecommendationStep2Type;
+use App\Form\RecommendationType;
+use App\Form\RecommendationTypeDisplayClient;
 use App\Form\StatusFormType;
 use App\Repository\MemberRepository;
-use App\Repository\RecommendationRepository;
-use App\Repository\JobRepository;
 use App\Repository\PrestationRepository;
+use App\Repository\RecommendationRepository;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Mime\Email;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use Symfony\Component\Routing\Annotation\Route;
 
 /**
  * @Route("/recommendation")
@@ -27,6 +27,8 @@ class RecommendationController extends AbstractController
     /**
      * @IsGranted("ROLE_ADMIN")
      * @Route("/", name="recommendation_index", methods={"GET"})
+     * @param RecommendationRepository $recommendationRepo
+     * @return Response
      */
     public function index(RecommendationRepository $recommendationRepo): Response
     {
@@ -59,14 +61,14 @@ class RecommendationController extends AbstractController
                     $targMemPresId[] = $targMemberPresta->getId();
                 }
             }
-            
+
             if (!empty($recommendation->getTarget())) {
                 $request->getSession()->set('target_id', $recommendation->getTarget()->getId());
             }
             if (!empty($recommendation->getOwner())) {
                 $request->getSession()->set('owner_id', $recommendation->getOwner()->getId());
             }
-            
+
             $request->getSession()->set('prestation_ids', $targMemPresId);
             return $this->redirectToRoute('recommendation_newstep2');
         }
@@ -77,9 +79,15 @@ class RecommendationController extends AbstractController
         ]);
     }
 
-/**
+    /**
      *
      * @Route("/newstep2", name="recommendation_newstep2", methods={"GET","POST"})
+     * @param Request $request
+     * @param MailerInterface $mailer
+     * @param PrestationRepository $prestationRepository
+     * @param MemberRepository $memberRepository
+     * @return Response
+     * @throws \Symfony\Component\Mailer\Exception\TransportExceptionInterface
      */
     public function newstep2(
         Request $request,
@@ -95,7 +103,7 @@ class RecommendationController extends AbstractController
         $prestations = $prestationRepository->findBy([
             'id' => $prestationIds
         ]);
-        
+
         $recommendation = new Recommendation();
         $form = $this->createForm(RecommendationStep2Type::class, $recommendation, [
             'prestations' => $prestations
@@ -122,16 +130,16 @@ class RecommendationController extends AbstractController
                 'clientName' => $clientName,
                 'infoClient' => $infoClient,
                 'comment' => $comment
-                ];
-            
+            ];
+
             $email = (new Email())
                 ->from($owner->getRegisterEmail())
                 ->to($target->getRegisterEmail())
                 ->subject('Vous venez de recevoir une nouvelle recommandation')
                 ->html($this->renderView('recommendation/mail.html.twig', $variable));
-            
+
             $mailer->send($email);
-            
+
             $request->getSession()->remove('prestation_ids');
             $request->getSession()->remove('target_id');
             $request->getSession()->remove('owner_id');
@@ -154,7 +162,10 @@ class RecommendationController extends AbstractController
 
     /**
      *
-         * @Route("/{id}/edit", name="recommendation_edit", methods={"GET","POST"})
+     * @Route("/{id}/edit", name="recommendation_edit", methods={"GET","POST"})
+     * @param Request $request
+     * @param Recommendation $recommendation
+     * @return Response
      */
     public function edit(Request $request, Recommendation $recommendation): Response
     {
@@ -174,11 +185,45 @@ class RecommendationController extends AbstractController
     }
 
     /**
+     *
+     * @Route("/{id}/little_edit", name="recommendation_little_edit", methods={"GET","POST"})
+     * @param Request $request
+     * @param Recommendation $recommendation
+     * @param RecommendationRepository $recommendationRepo
+     * @return Response
+     */
+    public function littleEdit(
+        Request $request,
+        Recommendation $recommendation,
+        RecommendationRepository $recommendationRepo
+    ): Response {
+        $form = $this->createForm(RecommendationTypeDisplayClient::class, $recommendation);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $this->getDoctrine()->getManager()->flush();
+
+            return $this->redirectToRoute(
+                'member_profile',
+                ['id' => $recommendationRepo->findBy(['id' => $request->get('id')])[0]->getOwner()->getId()]
+            );
+        }
+
+        return $this->render('recommendation/littleedit.html.twig', [
+            'recommendation' => $recommendation,
+            'form' => $form->createView(),
+        ]);
+    }
+
+    /**
      * @Route("/{id}", name="recommendation_delete", methods={"DELETE"})
+     * @param Request $request
+     * @param Recommendation $recommendation
+     * @return Response
      */
     public function delete(Request $request, Recommendation $recommendation): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$recommendation->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $recommendation->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($recommendation);
             $entityManager->flush();
@@ -189,7 +234,7 @@ class RecommendationController extends AbstractController
 
     /**
      *
-         * @Route("/{id}/status", name="recommendation_status", methods={"GET","POST"})
+     * @Route("/{id}/status", name="recommendation_status", methods={"GET","POST"})
      */
     public function status(Request $request, Recommendation $recommendation): Response
     {

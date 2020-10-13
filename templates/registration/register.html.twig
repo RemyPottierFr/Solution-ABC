@@ -4,82 +4,82 @@
 {% endblock %}
 
 {% block body %}
-	<div class="container">
-		<h1 class="memberList__title">Créer un compte</h1>
+    <div class="container">
+        <h1 class="memberList__title">Créer un compte</h1>
 
-		{{ form_start(registrationForm) }}
-		<div class="row formulaire_div">
-			<div class="form-group col-12 col-xl-6 mx-auto">
-				{{ form_label(registrationForm.name, 'Nom et prénom') }}
-				{{ form_widget(registrationForm.name, {'attr':{'class':'form-control border border-dark'}}) }}
-			</div>
-		</div>
-		<div class="row formulaire_div">
-			<div class="form-group col-12 col-xl-6 mx-auto">
-				{{ form_label(registrationForm.company, 'Entreprise') }}
-				{{ form_widget(registrationForm.company, {'attr':{'class':'form-control border border-dark'}}) }}
-			</div>
-		</div>
-		<div class="row formulaire_div">
-			<div class="form-group col-12 col-xl-6 mx-auto">
-				{{ form_label(registrationForm.jobs, 'Liste des Metiers (Maintenir CTRL pour sélection multiples)') }}
-				{{ form_widget(registrationForm.jobs, {'attr':{'class':'form-control border border-dark'}}) }}
-				<p>Cliquer
-					<a href="{{ path('job_new') }}">ici
-						<a/>pour ajouter un métier</p>
-				</p>
-			</div>
-		</div>
-		<div class="row formulaire_div">
-			<div class="form-group col-12 col-xl-6 mx-auto">
-				{{ form_label(registrationForm.phonenumber, 'Téléphone') }}
-				{{ form_widget(registrationForm.phonenumber, {'attr':{'class':'form-control border border-dark'}}) }}
-			</div>
-		</div>
-		<div class="row formulaire_div">
-			<div class="form-group col-12 col-xl-6 mx-auto">
-				{{ form_label(registrationForm.workingLocation, 'Adresse de l\'entreprise') }}
+        {{ form_start(registrationForm) }}
+        <div class="row formulaire_div">
+            <div class="form-group col-12 col-xl-6 mx-auto">
+                {{ form_label(registrationForm.name, 'Nom et prénom') }}
+                {{ form_widget(registrationForm.name, {'attr':{'class':'form-control border border-dark'}}) }}
+            </div>
+        </div>
+        <div class="row formulaire_div">
+            <div class="form-group col-12 col-xl-6 mx-auto">
+                {{ form_label(registrationForm.company, 'Entreprise') }}
+                {{ form_widget(registrationForm.company, {'attr':{'class':'form-control border border-dark'}}) }}
+            </div>
+        </div>
+        <div class="row formulaire_div">
+            <div class="form-group col-12 col-xl-6 mx-auto">
+                {{ form_label(registrationForm.jobs, 'Liste des Metiers (Maintenir CTRL pour sélection multiples)') }}
+                {{ form_widget(registrationForm.jobs, {'attr':{'class':'form-control border border-dark'},'required':'true'}) }}
+                <p>Cliquer
+                    <a href="{{ path('job_new') }}">ici
+                        <a/>pour ajouter un métier</p>
+                </p>
+            </div>
+        </div>
+        <div class="row formulaire_div">
+            <div class="form-group col-12 col-xl-6 mx-auto">
+                {{ form_label(registrationForm.phonenumber, 'Téléphone') }}
+                {{ form_widget(registrationForm.phonenumber, {'attr':{'class':'form-control border border-dark'}}) }}
+            </div>
+        </div>
+        <div class="row formulaire_div">
+            <div class="form-group col-12 col-xl-6 mx-auto">
+                {{ form_label(registrationForm.workingLocation, 'Adresse de l\'entreprise') }}
                 {{ form_widget(registrationForm.workingLocation, {'attr':{'class':'form-control border border-dark'}}) }}
-            </div> 
+            </div>
         </div>
         <div class="row formulaire_div">
             <div class="form-group col-12 col-xl-6 mx-auto">
                 {{ form_label(registrationForm.postCode, 'Code postal de l\'entreprise') }}
-				{{ form_widget(registrationForm.postCode, {'attr':{'class':'form-control border border-dark'}}) }}
-			</div>
-		</div>
-		<div class="row formulaire_div">
-			<div class="form-group col-12 col-xl-6 mx-auto">
-				{{ form_label(registrationForm.city, 'Ville de l\'entreprise') }}
+                {{ form_widget(registrationForm.postCode, {'attr':{'class':'form-control border border-dark'}}) }}
+            </div>
+        </div>
+        <div class="row formulaire_div">
+            <div class="form-group col-12 col-xl-6 mx-auto">
+                {{ form_label(registrationForm.city, 'Ville de l\'entreprise') }}
                 {{ form_widget(registrationForm.city, {'attr':{'class':'form-control border border-dark'}}) }}
-            </div> 
+            </div>
         </div>
         <div class="row formulaire_div">
             <div class="form-group col-12 col-xl-6 mx-auto">
                 {{ form_label(registrationForm.profileImage, 'Photo de profil') }}
                 {{ form_widget(registrationForm.profileImage, {'attr':{'class':'form-control border border-dark'}}) }}
-            </div> 
+            </div>
         </div>
         <div class="row formulaire_div">
             <div class="form-group col-12 col-xl-6 mx-auto">
                 {{ form_label(registrationForm.registerEmail, 'Adresse email') }}
                 {{ form_widget(registrationForm.registerEmail, {'attr':{'class':'form-control border border-dark'}}) }}
-            </div> 
+            </div>
         </div>
         <div class="row formulaire_div">
             <div class="form-group col-12 col-xl-6 mx-auto">
                 {{ form_label(registrationForm.plainPassword, 'Mot de passe') }}
                 {{ form_widget(registrationForm.plainPassword, {'attr':{'class':'form-control border border-dark'}}) }}
-            </div> 
+            </div>
         </div>
         {# {{ form_row(registrationForm.agreeTerms) }} #}
         <div class="row">
             <button class="btn btn-primary mx-auto">S'enregistrer</button>
         </div>
-    {{ form_end(registrationForm) }}
+        {{ form_end(registrationForm) }}
 
-				<div class="row">
-					<a class="mx-auto" href="{{ path('app_login') }}">Déjà un compte ?</a>
-				</div>
-			</div>
-		{% endblock %}
+        <div class="row">
+            <a class="mx-auto" href="{{ path('app_login') }}">Déjà un compte ?</a>
+        </div>
+    </div>
+{% endblock %}

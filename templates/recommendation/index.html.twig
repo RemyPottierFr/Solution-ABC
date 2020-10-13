@@ -4,41 +4,43 @@
 {% endblock %}
 
 {% block body %}
-	<div class="container">
-		<h1 class="memberList__title">Index des recommandations</h1>
-		<table class="table">
-			<thead>
-				<tr class="memberList__head">
-					<th>Recommandations de</th>
-					<th>Pour</th>
-					<th>Prestation de</th>
-					<th>Commentaire</th>
-				</tr>
-			</thead>
-			<tbody>
-				{% for recommendation in recommendations %}
-					<tr>
-						<td>{{ recommendation.owner.name }}</td>
-						<td>{{ recommendation.target.name }}</td>
-						<td>{{ recommendation.comment }}</td>
-						<td class="memberList__line-item">
-							<a class="memberList__line-item-link" href="{{ path('recommendation_show', {'id': recommendation.id}) }}">
-								<i class="fas fa-eye"></i>
-								<span>Voir</span>
-							</a>
-							<a class="memberList__line-item-link" href="{{ path('recommendation_edit', {'id': recommendation.id}) }}">
-								<i class="fas fa-pen"></i>
-								<span>Édition</span>
-							</a>
-						</td>
-					</tr>
-				{% else %}
-					<tr>
-						<td colspan="3">Aucunes recommandations trouvées</td>
-					</tr>
-				{% endfor %}
-			</tbody>
-		</table>
-	</div>
+    <div class="container">
+        <h1 class="memberList__title">Index des recommandations</h1>
+        <table class="table">
+            <thead>
+            <tr class="memberList__head">
+                <th>Recommandations de</th>
+                <th>Pour</th>
+                <th>Prestation de</th>
+                <th>Commentaire</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for recommendation in recommendations %}
+                <tr>
+                    <td>{{ recommendation.owner.name }}</td>
+                    <td>{{ recommendation.target.name }}</td>
+                    <td>{{ recommendation.comment }}</td>
+                    <td class="memberList__line-item">
+                        <a class="memberList__line-item-link"
+                           href="{{ path('recommendation_show', {'id': recommendation.id}) }}">
+                            <i class="fas fa-eye"></i>
+                            <span>Voir</span>
+                        </a>
+                        <a class="memberList__line-item-link"
+                           href="{{ path('recommendation_edit', {'id': recommendation.id}) }}">
+                            <i class="fas fa-pen"></i>
+                            <span>Édition</span>
+                        </a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="3">Aucunes recommandations trouvées</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
 
 {% endblock %}

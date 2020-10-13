@@ -2,10 +2,9 @@
 
 namespace App\Form;
 
-use App\Entity\Job;
 use App\Entity\Recommendation;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -14,15 +13,14 @@ class RecommendationType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('owner', null, ['choice_label' => 'name'])
-            ->add('target', null, ['choice_label' => 'name'])
             ->add('comment')
+            ->add('owner')
             ->add('clientName')
             ->add('infoClient')
-            ->add('status')
-        ;
+            ->add('displayClient', CheckboxType::class, ['label' => 'Afficher le client recommandé']);
         $options;
     }
+
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([

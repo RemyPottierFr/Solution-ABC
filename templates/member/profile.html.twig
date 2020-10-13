@@ -65,11 +65,13 @@
                                     {% if targRecommendation.status == true %}
                                         <h3><span class="badge badge-success item-right">Effectué</span></h3>
                                     {% endif %}
+                                    BROSSE BOULE
                                     <div class="rightItem">
-                                        {% if user and member.id == user.id %}
-                                            <a href="{{ path('recommendation_status', {id:targRecommendation.id}) }}">
-                                                <h6><span class="badge badge-secondary">edit</span></h6></a>
-                                        {% endif %}
+                                        {# {% if user and member.id == user.id %} #}
+                                        <a href="{{ path('recommendation_status', {id:targRecommendation.id}) }}">
+                                            <h6><span class="badge badge-secondary">edit</span></h6>
+                                        </a>
+                                        {# {% endif %} #}
                                     </div>
                                 </div>
                             </div>
@@ -101,6 +103,9 @@
                                 {% if ownedRecommendation.status == true %}
                                     <h3><span class="badge badge-success item-right">Effectué</span></h3>
                                 {% endif %}
+                                <a href="{{ path('recommendation_little_edit', {id:ownedRecommendation.id}) }}">
+                                    <h6><span class="badge badge-secondary">edit</span></h6>
+                                </a>
                             </div>
                         </div>
                         <div class="clientInfo">

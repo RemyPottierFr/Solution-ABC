@@ -122,6 +122,7 @@ class Member implements UserInterface
     {
         $this->assignedReco = new ArrayCollection();
         $this->jobs = new ArrayCollection();
+        $this->recommendations = new ArrayCollection();
     }
 
     public function getId(): ?int

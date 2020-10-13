@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Job;
 use App\Entity\Member;
+use Doctrine\DBAL\Types\StringType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
@@ -19,13 +20,13 @@ class MemberType extends AbstractType
     {
         $builder
             ->add('registeremail', EmailType::class)
-            ->add('name', null, ['attr' => ['placeholder' => 'Jean Dupont']])
-            ->add('company', null, ['attr' => ['placeholder' => 'Entreprise du chene']])
+            ->add('name', StringType::class, ['attr' => ['placeholder' => 'Jean Dupont']])
+            ->add('company', StringType::class, ['attr' => ['placeholder' => 'Entreprise du chene']])
             ->add('phonenumber', null, ['attr' => ['placeholder' => '02 47 00 00 00']])
-            ->add('workingLocation', null, ['attr' => ['placeholder' => '49 rue du vieux chene']])
+            ->add('workingLocation', StringType::class, ['attr' => ['placeholder' => '49 rue du vieux chene']])
             ->add('postCode', null, ['attr' => ['placeholder' => '63000']])
-            ->add('city', null, ['attr' => ['placeholder' => 'Clermont-Ferrand']])
-            ->add('profileImage', null, [
+            ->add('city', StringType::class, ['attr' => ['placeholder' => 'Clermont-Ferrand']])
+            ->add('profileImage', StringType::class, [
                 'data' => 'https://image.flaticon.com/icons/png/512/64/64572.png',
             ])
             ->add('plainPassword', PasswordType::class, [

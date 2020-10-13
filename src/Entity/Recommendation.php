@@ -58,6 +58,11 @@ class Recommendation
      */
     private $status = 0;
 
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $displayClient;
+
     public function __construct()
     {
         $this->clients = new ArrayCollection();
@@ -194,6 +199,18 @@ class Recommendation
     public function setStatus(?bool $status): self
     {
         $this->status = $status;
+
+        return $this;
+    }
+
+    public function getDisplayClient(): ?bool
+    {
+        return $this->displayClient;
+    }
+
+    public function setDisplayClient(bool $displayClient): self
+    {
+        $this->displayClient = $displayClient;
 
         return $this;
     }

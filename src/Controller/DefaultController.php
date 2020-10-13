@@ -47,6 +47,9 @@ class DefaultController extends AbstractController
 
     /**
      * @Route("/recommendation/list", name="recommendation_list")
+     * @param PaginatorInterface $paginator
+     * @param Request $request
+     * @return Response
      */
     public function recommendationList(PaginatorInterface $paginator, Request $request)
     {

@@ -23,12 +23,14 @@
     "symfony/security-bundle": "4.3.*",
     "symfony/sendgrid-mailer": "4.4.*",
     "symfony/serializer-pack": "*",
+    "symfony/string": "4.4.0",
     "symfony/translation": "4.3.*",
     "symfony/twig-bundle": "4.3.*",
     "symfony/validator": "4.3.*",
     "symfony/web-link": "4.3.*",
     "symfony/webpack-encore-bundle": "^1.7",
-    "symfony/yaml": "4.3.*"
+    "symfony/yaml": "4.3.*",
+    "ext-intl": "*"
   },
   "require-dev": {
     "doctrine/doctrine-fixtures-bundle": "^3.3",

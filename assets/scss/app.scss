@@ -570,11 +570,10 @@ nav {
 }
 
 .arrow {
-  background-image: url("../../public/images/arrow.png");
-  background-size: contain;
   height: 5rem;
   width: 5rem;
-  align-self: center;
+  display: flex;
+  align-items: center;
 }
 
 .block_card {

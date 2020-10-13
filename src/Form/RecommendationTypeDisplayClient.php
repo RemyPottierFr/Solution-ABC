@@ -16,7 +16,7 @@ class RecommendationTypeDisplayClient extends AbstractType
             ->add('comment')
             ->add('clientName')
             ->add('infoClient')
-            ->add('displayClient', CheckboxType::class, ['label' => 'Afficher le client recommandé']);
+            ->add('displayClient', null, ['label' => 'Afficher le client recommandé']);
         $options;
     }
 

@@ -3,7 +3,6 @@
 {% block title %}Les événements ABC{% endblock %}
 
 {% block body %}
-
     <div>
         <div class="membresPage__head">
             <span class="membresPage__head-title">Nos événements</span>
@@ -13,13 +12,43 @@
         </div>
         <section class="Event__list">
             {% for event in events %}
-                <div class="Event__list-item">
-                    <span class="Event__list-item--date">{{ event.date|date("m/d/Y") }}</span>
-                    <span>{{ event.title }}</span>
-                    <a href="{{ event.flyer }}">{{ event.flyer }}</a>
-                    <span>{{ event.recap }}</span>
+                <div class="Event__list-item event-toggle pointer-event d-flex flex-column"
+                     onclick="toggleRecap('{{ event.title }}')">
+                    <div class="w-100 d-flex flex-nowrap">
+                        <span class="Event__list-item--date">{{ event.date|date("m/d/Y") }}</span>
+                        <span>{{ event.title }}</span>
+                        <a href="{{ asset('uploads/flyers/' ~ event.flyer) }}" target="_blank" class="text-nowrap" rel="noopener nofollow">Voir
+                            le flyer (PDF)</a>
+                        {% if event.recap %}
+                            <button class="btn ml-auto">Voir le récapitulatif</button>
+                        {% endif %}
+                    </div>
+                    {% if event.recap %}
+                        <div>
+                            <p>{{ event.recap }}</p>
+                        </div>
+                    {% endif %}
                 </div>
+            {% else %}
+                <h3 class="text-center text-secondary">Aucun événement pour le moment !</h3>
             {% endfor %}
         </section>
     </div>
+
+    <script>
+      let eventList = [];
+      window.addEventListener("load", () => {
+        eventList = document.getElementsByClassName("event-toggle");
+        [...eventList].forEach((each) => {
+          each.lastElementChild.localName === "div" && each.children.length > 1 && each.lastElementChild.classList.add("d-none");
+        });
+      });
+
+      function toggleRecap(title) {
+        console.log(eventList, title);
+        const recapItem = [...eventList].filter((item => item.children[0].children[1].innerText === title && item.lastElementChild.localName === "div"))[0];
+        console.log(recapItem);
+        recapItem.lastElementChild.classList.toggle("d-none");
+      }
+    </script>
 {% endblock %}

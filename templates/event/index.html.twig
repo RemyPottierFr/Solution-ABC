@@ -12,15 +12,25 @@
         </div>
         <section class="Event__list">
             {% for event in events %}
-                <div class="Event__list-item event-toggle pointer-event d-flex flex-column"
+                <div class="Event__list-item event-toggle cursor-pointer d-flex flex-column"
                      onclick="toggleRecap('{{ event.title }}')">
-                    <div class="w-100 d-flex flex-nowrap">
+                    <div class="w-100 d-flex flex-nowrap align-items-center">
                         <span class="Event__list-item--date">{{ event.date|date("m/d/Y") }}</span>
                         <span>{{ event.title }}</span>
-                        <a href="{{ asset('uploads/flyers/' ~ event.flyer) }}" target="_blank" class="text-nowrap" rel="noopener nofollow">Voir
+                        <a href="{{ asset('uploads/flyers/' ~ event.flyer) }}" target="_blank" class="text-nowrap"
+                           rel="noopener nofollow">Voir
                             le flyer (PDF)</a>
                         {% if event.recap %}
-                            <button class="btn ml-auto">Voir le récapitulatif</button>
+                            <div class="ml-auto">
+                                <button class="btn">Voir le récapitulatif</button>
+                                {% if is_granted('ROLE_ADMIN') %}
+                                    <a href="{{ event.id }}/edit" class="ml-auto">Éditer</a>
+                                {% endif %}
+                            </div>
+                        {% else %}
+                            {% if is_granted('ROLE_ADMIN') %}
+                                <a href="{{ event.id }}/edit" class="ml-auto">Éditer</a>
+                            {% endif %}
                         {% endif %}
                     </div>
                     {% if event.recap %}

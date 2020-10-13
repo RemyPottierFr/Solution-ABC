@@ -94,8 +94,7 @@ class RecommendationController extends AbstractController
         MailerInterface $mailer,
         PrestationRepository $prestationRepository,
         MemberRepository $memberRepository
-    ): Response
-    {
+    ): Response {
         $ownerId = $request->getSession()->get('owner_id');
         $prestationIds = $request->getSession()->get('prestation_ids');
 
@@ -164,6 +163,9 @@ class RecommendationController extends AbstractController
     /**
      *
      * @Route("/{id}/edit", name="recommendation_edit", methods={"GET","POST"})
+     * @param Request $request
+     * @param Recommendation $recommendation
+     * @return Response
      */
     public function edit(Request $request, Recommendation $recommendation): Response
     {
@@ -194,8 +196,7 @@ class RecommendationController extends AbstractController
         Request $request,
         Recommendation $recommendation,
         RecommendationRepository $recommendationRepo
-    ): Response
-    {
+    ): Response {
         $form = $this->createForm(RecommendationTypeDisplayClient::class, $recommendation);
         $form->handleRequest($request);
 
@@ -216,6 +217,9 @@ class RecommendationController extends AbstractController
 
     /**
      * @Route("/{id}", name="recommendation_delete", methods={"DELETE"})
+     * @param Request $request
+     * @param Recommendation $recommendation
+     * @return Response
      */
     public function delete(Request $request, Recommendation $recommendation): Response
     {

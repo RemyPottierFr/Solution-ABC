@@ -1,11 +1,11 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <div class="bg-white shadow rounded overflow-hidden">
+    <div class="bg-white shadow overflow-hidden">
         <div class="px-4 pt-0 pb-4 bg-dark">
             <div class="media align-items-end profile-header">
                 <div class="profile mr-6"><img src="{{ member.profileImage }}"
-                                               alt="Profile Image" width="130" class="rounded mb-2 img-thumbnail">
+                                               alt="Profile Image" width="130" class="mb-2 img-thumbnail">
                     {% if is_granted('ROLE_MEMBER') %}
                         {% if member.id == user.id %}
                             <a href="{{ path('member_edit', {'id': member.id}) }}"
@@ -61,18 +61,14 @@
                                 <div class="rightElement">
                                     {% if targRecommendation.status == false %}
                                         <h3><span class="badge badge-warning item-right">En cours</span></h3>
+                                        <a class="btn btn-add"
+                                           href="{{ path('recommendation_status', {id:targRecommendation.id}) }}">
+                                            <span>éditer <i class="far fa-edit"></i></span>
+                                        </a>
                                     {% endif %}
                                     {% if targRecommendation.status == true %}
                                         <h3><span class="badge badge-success item-right">Effectué</span></h3>
                                     {% endif %}
-                                    BROSSE BOULE
-                                    <div class="rightItem">
-                                        {# {% if user and member.id == user.id %} #}
-                                        <a href="{{ path('recommendation_status', {id:targRecommendation.id}) }}">
-                                            <h6><span class="badge badge-secondary">edit</span></h6>
-                                        </a>
-                                        {# {% endif %} #}
-                                    </div>
                                 </div>
                             </div>
                             <div>
@@ -93,19 +89,21 @@
             <h2>Recommandations émises</h2>
             <div class="row scroll">
                 {% for ownedRecommendation in ownedRecommendations %}
-                    <div class="card_reco col-sm-12 col-xl-12 mx-auto border mt-3 mr">
+                    <div class="card_reco col-sm-12 col-xl-12 mb-auto mx-auto border mt-3 mr">
                         <div class="alignItem row mt-3">
                             <p class="leftText"><i>Pour le professionnel : {{ ownedRecommendation.target.name }}</i></p>
                             <div class="rightElement">
                                 {% if ownedRecommendation.status == false %}
                                     <h3><span class="badge badge-warning item-right">En cours</span></h3>
+                                    <a class="btn btn-add"
+                                       href="{{ path('recommendation_little_edit', {id:ownedRecommendation.id}) }}">
+                                        <span>éditer <i class="far fa-edit"></i></span>
+                                    </a>
                                 {% endif %}
                                 {% if ownedRecommendation.status == true %}
                                     <h3><span class="badge badge-success item-right">Effectué</span></h3>
                                 {% endif %}
-                                <a href="{{ path('recommendation_little_edit', {id:ownedRecommendation.id}) }}">
-                                    <h6><span class="badge badge-secondary">edit</span></h6>
-                                </a>
+
                             </div>
                         </div>
                         <div class="clientInfo">

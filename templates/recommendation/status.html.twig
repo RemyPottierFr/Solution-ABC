@@ -10,6 +10,12 @@
                 {{ form_widget(form, {'attr':{'class':'form-control'}}) }}
             </div>
         </div>
+        <div class="row formulaire_div">
+            <div class="form-group col-12 col-xl-6 mx-auto">
+                {{ form_label(form.status) }}
+                {{ form_widget(form.status, {'attr':{'class':'form-control'}}) }}
+            </div>
+        </div>
         </br>
         <div class="row">
             <button type="submit" class="btn btn-dark mx-auto">{{ button_label|default('Actualiser') }}</button>

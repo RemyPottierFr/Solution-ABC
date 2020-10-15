@@ -3,14 +3,14 @@
 {% block title %}Nouvelle recommandation{% endblock %}
 
 {% block body %}
-    <div class="container">
+    <div>
         <div class="membresPage__head">
             <span class="membresPage__head-title">Créer une recommendation</span>
         </div>
         {{ form_start(form) }}
         {{ form_errors(form) }}
         {{ form_widget(form._token) }}
-        <div class="row formulaire_div">
+        <div class="row formulaire_div mt-5">
             <div class="form-group col-12 col-xl-6 mx-auto">
                 {{ form_label(form.prestations, 'Pour le(s) prestation(s) :') }}
                 {{ form_widget(form.prestations, {'attr':{'class':'form-control border border-dark'}}) }}
@@ -39,7 +39,7 @@
                 {{ form_widget(form.displayClient) }}
             </div>
         </div>
-        <div class="row">
+        <div class="row mb-5">
             <button type="submit" class="btn btn-dark mx-auto">{{ button_label|default('Envoyer') }}</button>
         </div>
         {{ form_end(form, {'render_rest': false}) }}

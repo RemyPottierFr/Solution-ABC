@@ -282,7 +282,8 @@ nav {
   justify-content: center;
   align-items: center;
 }
-.MemberCaroussel__content--profile-photo img{
+
+.MemberCaroussel__content--profile-photo img {
   width: 100%;
   height: auto;
 }
@@ -463,9 +464,30 @@ nav {
 
 .membres {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  grid-gap: 32px;
-  padding: 60px 20px;
+}
+
+@media screen and (min-width: 720px) {
+  .membres {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-gap: 32px;
+    padding: 60px 20px;
+  }
+}
+
+@media screen and (max-width: 720px) {
+  .membres {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-gap: 16px;
+    padding: 15px 20px;
+  }
+}
+
+@media screen and (max-width: 420px) {
+  .membres {
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+    grid-gap: 16px;
+    padding: 15px 20px;
+  }
 }
 
 .membresPage__head {
@@ -527,6 +549,7 @@ nav {
   background: #f8f9fa;
   box-shadow: 0 0.2rem 0.3rem -0.2rem gray;
   border-radius: 0.2rem;
+  height: auto;
 }
 
 .card_connect {
@@ -821,40 +844,41 @@ nav {
   }
 }
 
-.Event__form{
-  margin:60px;
+.Event__form {
+  margin: 60px;
 }
-.Event__list{
-  margin:60px;
-  display:grid;
+
+.Event__list {
+  margin: 60px;
+  display: grid;
   grid-column: 1;
   grid-row-gap: 12px;
 }
 
-.Event__list-item{
-  display:flex;
+.Event__list-item {
+  display: flex;
   flex-wrap: nowrap;
   font-size: 1.2rem;
-  color:black;
-  box-shadow: 0px 0px 2px 0px rgba(15,15,15,1);
+  color: black;
+  box-shadow: 0px 0px 2px 0px rgba(15, 15, 15, 1);
   border-radius: 4px;
   padding: 8px 12px;
 }
 
-.Event__list-item span{
+.Event__list-item span {
   margin: 0 8px;
 }
 
-.Event__list-item--date{
-  color:#8C77C6;
+.Event__list-item--date {
+  color: #8C77C6;
 }
 
-.btn-add{
+.btn-add {
   background: #8C77C6;
-  color:white;
+  color: white;
   text-transform: uppercase;
 }
 
-.cursor-pointer{
+.cursor-pointer {
   cursor: pointer;
 }

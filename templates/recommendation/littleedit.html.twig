@@ -34,12 +34,11 @@
                 </div>
             </div>
             <div class="row">
-                <button type="submit" class="btn btn-dark mx-auto">{{ button_label|default('Envoyer') }}</button>
+                <button type="submit" class="btn btn-add mx-auto">{{ button_label|default('Mettre à jour') }}</button>
             </div>
             {{ form_end(form) }}
 
             <div class="row flex-column d-flex">
-                <a href="{{ path('recommendation_index') }}">Retour à la liste des recommandations</a>
                 {{ include('recommendation/_delete_form.html.twig') }}
             </div>
         </div>

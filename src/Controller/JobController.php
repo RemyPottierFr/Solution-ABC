@@ -39,7 +39,7 @@ class JobController extends AbstractController
             $entityManager->persist($job);
             $entityManager->flush();
 
-            return $this->redirectToRoute('app_register');
+            return $this->redirectToRoute('member_list');
         }
 
         return $this->render('job/new.html.twig', [

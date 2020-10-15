@@ -17,9 +17,11 @@
                     <div class="w-100 d-flex flex-nowrap align-items-center">
                         <span class="Event__list-item--date">{{ event.date|date("m/d/Y") }}</span>
                         <span>{{ event.title }}</span>
+                        {% if event.flyer %}
                         <a href="{{ asset('uploads/flyers/' ~ event.flyer) }}" target="_blank" class="text-nowrap"
                            rel="noopener nofollow">Voir
                             le flyer (PDF)</a>
+                        {% endif %}
                         {% if event.recap %}
                             <div class="ml-auto">
                                 <button class="btn">Voir le récapitulatif</button>

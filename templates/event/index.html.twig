@@ -15,7 +15,7 @@
                 <div class="Event__list-item event-toggle cursor-pointer d-flex flex-column"
                      onclick="toggleRecap('{{ event.title }}')">
                     <div class="w-100 d-flex flex-nowrap align-items-center">
-                        <span class="Event__list-item--date">{{ event.date|date("m/d/Y") }}</span>
+                        <span class="Event__list-item--date">{{ event.date|date("d/m/Y") }}</span>
                         <span>{{ event.title }}</span>
                         {% if event.flyer %}
                         <a href="{{ asset('uploads/flyers/' ~ event.flyer) }}" target="_blank" class="text-nowrap"

@@ -882,3 +882,18 @@ nav {
 .cursor-pointer {
   cursor: pointer;
 }
+
+.form-section{
+  background: white;
+  border-radius: 24px;
+  padding:32px;
+  margin: 2em 0 1em 0;
+}
+
+.form--label{
+  font-size: 1.2em;
+}
+
+.border-magenta{
+  border:solid #8C77C6 2px !important;
+}

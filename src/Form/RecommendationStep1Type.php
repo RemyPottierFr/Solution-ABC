@@ -12,7 +12,7 @@ class RecommendationStep1Type extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('target', null, ['choice_label' => 'name']);
+            ->add('target', null, ['choice_label' => 'name', 'label' => 'Je recommande :', 'required'=>'true']);
         $options;
     }
 

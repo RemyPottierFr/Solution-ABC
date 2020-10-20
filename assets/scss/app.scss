@@ -466,7 +466,15 @@ nav {
   display: grid;
 }
 
+
+.recommendation_profile_picture, .recommendation_prestations-text {
+  width: 100%;
+}
+
 @media screen and (min-width: 720px) {
+  .recommendation_profile_picture, .recommendation_prestations-text {
+    width: 50%;
+  }
   .membres {
     grid-template-columns: repeat(4, minmax(0, 1fr));
     grid-gap: 32px;
@@ -883,17 +891,29 @@ nav {
   cursor: pointer;
 }
 
-.form-section{
+.form-section {
   background: white;
   border-radius: 24px;
-  padding:32px;
+  padding: 32px;
   margin: 2em 0 1em 0;
 }
 
-.form--label{
+.form--label {
   font-size: 1.2em;
 }
 
-.border-magenta{
-  border:solid #8C77C6 2px !important;
+.border-magenta {
+  border: solid #8C77C6 2px !important;
 }
+
+.textarea-input {
+  min-height: 150px;
+}
+
+.arrow-right--magenta {
+  padding: 4px 8px;
+  max-width: 115px;
+  height: auto;
+}
+
+

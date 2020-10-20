@@ -6,7 +6,6 @@ use App\Entity\Prestation;
 use App\Entity\Recommendation;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -24,7 +23,7 @@ class RecommendationStep2Type extends AbstractType
                 'choice_label' => 'name',
                 'multiple' => true
             ])
-            ->add('displayClient', null, ['label'=>'Afficher le client sur la recommendation']);
+            ->add('displayClient', null, ['label' => 'Afficher le client sur la recommendation']);
         $options;
     }
 
@@ -32,7 +31,7 @@ class RecommendationStep2Type extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => Recommendation::class,
-            'prestations' => []
+            'prestations' => [],
         ]);
 
         $resolver->setAllowedTypes('prestations', 'array');

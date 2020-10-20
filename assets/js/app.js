@@ -21,13 +21,8 @@ const headerMenu = document.getElementById("Header__menu");
 
 burger.onclick = () => headerMenu.classList.toggle("hidden");
 
-const menuForScreen = () => {
+window.addEventListener("load", () => {
   if (window.matchMedia("(max-width: 740px)").matches) {
-    headerMenu.classList.add("hidden");
-  } else {
-    headerMenu.classList.remove("hidden");
+    headerMenu.classList = "Header__menu hidden";
   }
-};
-
-window.addEventListener("resize", () => menuForScreen());
-
+});

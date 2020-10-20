@@ -146,7 +146,8 @@ class RecommendationController extends AbstractController
             return $this->redirectToRoute('recommendation_list');
         }
         return $this->render('recommendation/newstep2.html.twig', [
-            'form' => $form->createView()
+            'form' => $form->createView(),
+            'target' => $target
         ]);
     }
 

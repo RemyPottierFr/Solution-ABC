@@ -23,7 +23,7 @@ class RecommendationStep2Type extends AbstractType
                 'choice_label' => 'name',
                 'multiple' => true
             ])
-            ->add('displayClient', null, ['label' => 'Afficher le client sur la recommendation']);
+            ->add('displayClient', null, ['label' => 'Afficher le client sur la recommandation']);
         $options;
     }
 

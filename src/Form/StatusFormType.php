@@ -12,7 +12,7 @@ class StatusFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('status', null, ['label'=>'Valider la recommendation']);
+            ->add('status', null, ['label'=>'Valider la recommandation']);
         $options;
     }
 

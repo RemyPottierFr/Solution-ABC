@@ -18,11 +18,36 @@ require("bootstrap");
 
 const burger = document.getElementById("burger");
 const headerMenu = document.getElementById("Header__menu");
-
 burger.onclick = () => headerMenu.classList.toggle("hidden");
 
-window.addEventListener("load", () => {
-  if (window.matchMedia("(max-width: 740px)").matches) {
-    headerMenu.classList = "Header__menu hidden";
+const recommendationOwnedSummaryHeader = document.getElementById(
+  "summaryOwnedHeader"
+);
+const recommendationOwnedSummaryContent = document.getElementById(
+  "summaryOwnedContent"
+);
+recommendationOwnedSummaryHeader &&
+  (recommendationOwnedSummaryHeader.onclick = () =>
+    recommendationOwnedSummaryContent.classList.toggle("hidden"));
+
+const recommendationRecievedSummaryHeader = document.getElementById(
+  "summaryRecievedHeader"
+);
+const recommendationRecievedSummaryContent = document.getElementById(
+  "summaryRecievedContent"
+);
+recommendationRecievedSummaryHeader &&
+  (recommendationRecievedSummaryHeader.onclick = () =>
+    recommendationRecievedSummaryContent.classList.toggle("hidden"));
+
+const resetHeaderMenu = () => {
+  if (window.matchMedia("(max-width: 1000px)").matches) {
+    headerMenu.classList = "Header__menu overflow-image z-50 hidden";
   }
+};
+
+window.onload = resetHeaderMenu;
+
+window.addEventListener("DOMContentLoaded", () => {
+  resetHeaderMenu();
 });

@@ -34,32 +34,33 @@
                     <i class="fas fa-sort-down text-magenta mr-2"></i> <span>Afficher les recommandations reçues</span>
                     <span>{% if targRecommendations|length>0 %} {{ targRecommendations|length }} {% else %} 0 {% endif %}</span>
                 </button>
-                <div class="row scroll hidden" id="summaryOwnedContent">
+                <div class="row scroll hidden mt-2 font-lato" id="summaryOwnedContent">
                     {% for targRecommendation in targRecommendations %}
-                        <div class="card_reco col-sm-12 col-xl-12 mx-auto py-3 px-2">
-                            <div class="row">
-                                <p class="leftText"><i>Émise par : {{ targRecommendation.owner.name }}</i></p>
-                                <div class="rightElement">
-                                    {% if targRecommendation.status == false %}
-                                        <h3><span class="badge badge-warning item-right">En cours</span></h3>
-                                        <a class="btn btn-add"
-                                           href="{{ path('recommendation_status', {id:targRecommendation.id}) }}">
-                                            <span>éditer <i class="far fa-edit"></i></span>
-                                        </a>
-                                    {% endif %}
-                                    {% if targRecommendation.status == true %}
-                                        <h3><span class="badge badge-success item-right">Effectué</span></h3>
-                                    {% endif %}
-                                </div>
+                        <div class="card_reco col-sm-12 col-xl-12 mx-auto py-3 px-5 d-flex flex-column flex-md-row justify-content-between mt-3">
+                            <div class="recommendation__description">
+                                <h4 class="font-weight-bold">
+                                    Pour le professionnel : {{ targRecommendation.target.name }}
+                                </h4>
+                                {% if user and member.id == user.id %}
+                                    <p class="my-0 mt-2">Le client : <span
+                                                class="font-weight-bold">{{ targRecommendation.clientName }}</span></p>
+                                    <p class="my-0 mt-2">Commentaire : {{ targRecommendation.comment }}</p>
+                                    <p class="my-0 mt-2">Contact : <span
+                                                class="font-weight-bold">{{ targRecommendation.infoClient }}</span></p>
+                                {% endif %}
                             </div>
-                            <div>
-                                <div class="clientInfo">
-                                    {% if user and member.id == user.id %}
-                                        <p>Le client : <b>{{ targRecommendation.clientName }}</b></p>
-                                        <p>Commentaire : {{ targRecommendation.comment }}</p>
-                                        <p>Contact : <b>{{ targRecommendation.infoClient }}</b></p>
-                                    {% endif %}
-                                </div>
+                            <div class="rightElement">
+                                {% if targRecommendation.status == false %}
+                                    <h3><span class="badge badge-warning item-right">En cours</span></h3>
+                                    <a class="btn btn-add"
+                                       href="{{ path('recommendation_status', {id:targRecommendation.id}) }}">
+                                        <span>éditer <i class="far fa-edit"></i></span>
+                                    </a>
+                                {% endif %}
+                                {% if targRecommendation.status == true %}
+                                    <h3><span class="badge badge-success item-right">Effectué</span></h3>
+                                {% endif %}
+
                             </div>
                         </div>
                     {% endfor %}

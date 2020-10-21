@@ -29,6 +29,20 @@ class EventController extends AbstractController
     }
 
     /**
+     * @Route("/{id}", name="event_delete")
+     * @param Event $event
+     * @return Response
+     */
+    public function delete(Event $event): Response
+    {
+        $entityManager = $this->getDoctrine()->getManager();
+        $entityManager->remove($event);
+        $entityManager->flush();
+
+        return $this->redirectToRoute('event');
+    }
+
+    /**
      * @Route("/add", name="event_add")
      * @IsGranted("ROLE_ADMIN")
      * @param Request $request
@@ -75,9 +89,10 @@ class EventController extends AbstractController
      * @Route("/{id}/edit", name="event_edit")
      * @IsGranted("ROLE_ADMIN")
      * @param Request $request
+     * @param Event $event
      * @return Response
      */
-    public function edit(Request $request, Event $event): Response
+    public function edit(Request $request, Event $event, EventRepository $eventRepository): Response
     {
         $form = $this->createForm(EventFormType::class, $event);
         $form->handleRequest($request);
@@ -108,7 +123,8 @@ class EventController extends AbstractController
         }
 
         return $this->render('event/edit.html.twig', [
-            'form' => $form->createView()
+            'form' => $form->createView(),
+            'event' => $eventRepository->find($request->get('id'))
         ]);
     }
 }

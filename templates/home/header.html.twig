@@ -1,15 +1,16 @@
-<header class="Header">
-    <button class="burger" id="burger" type="button">
+<section class="Header">
+
+    <div class="burger overflow-image z-100" id="burger" type="button">
         <span class="burger__line"></span>
         <span class="burger__line"></span>
         <span class="burger__line"></span>
-    </button>
+    </div>
     <div class="Header__banner">
-        <img class="Header__banner-img" src={{ asset('images/header_banner.png') }} alt="test"/>
+        <img class="Header__banner-img z-0" src={{ asset('images/header_banner.png') }} alt="test"/>
         <div></div>
     </div>
     <h1 class="Header__title">LE GROUPEMENT DE<br/>PROFESSIONNELS À VOS CÔTÉS</h1>
-    <nav class="Header__menu" id="Header__menu">
+    <nav class="Header__menu overflow-image z-50" id="Header__menu">
         <ul class="Header__menu--section">
             <li class="Header__menu--section-item">
                 <a class="Header__menu--link" href="{{ path('default') }}">
@@ -87,4 +88,4 @@
             {% endif %}
         </ul>
     </nav>
-</header>
+</section>

@@ -3,48 +3,58 @@
 {% block title %}Nouvelle recommandation{% endblock %}
 
 {% block body %}
-    <div>
+    <div class="bg-light">
         <div class="membresPage__head">
-            <span class="membresPage__head-title">Créer une recommendation</span>
+            <span class="membresPage__head-title">Créer une recommandation</span>
         </div>
-        {{ form_start(form) }}
-        {{ form_errors(form) }}
-        {{ form_widget(form._token) }}
-        <div class="row formulaire_div mt-5">
-            <div class="form-group col-12 col-xl-6 mx-auto">
-                {{ form_label(form.prestations, 'Pour le(s) prestation(s) :') }}
-                {{ form_widget(form.prestations, {'attr':{'class':'form-control border border-dark'}}) }}
+        <div class="container py-5">
+            {{ form_start(form) }}
+            <section class="form-section">
+                {{ form_errors(form) }}
+                {{ form_widget(form._token) }}
+                <div class="w-100 col-12 col-xl-8 mx-auto px-0 d-flex flex-column flex-md-nowrap flex-md-row position-relative align-items-center justify-content-center justify-content-md-start">
+                    <div class="d-flex flex-nowrap align-items-center justify-content-around mx-auto">
+                        <div class="d-flex flex-column justify-content-center text-center recommendation_profile_picture w-100">
+                            <img src="{{ target.profileImage }}" alt="profile image" class="img_profile" />
+                            <span class="mt-2">{{ target.name }}</span>
+                            <h5 class="mt-2">Je recommande</h5>
+                        </div>
+                        <div class="d-none d-md-flex">
+                            <img src="/images/arrowRightMagenta.png" class="arrow-right--magenta" />
+                        </div>
+                    </div>
+                    <div class="form-group recommendation_prestations-text">
+                        {{ form_label(form.prestations, 'Pour le(s) prestation(s) :') }}
+                        {{ form_widget(form.prestations, {'attr':{'class':'form-control border-magenta textarea-input'}}) }}
+                    </div>
+                </div>
+                <div class="col-12 col-xl-8 mx-auto d-flex flex-nowrap px-0 justify-content-between">
+                    <div class="form-group w-100 mr-3">
+                        {{ form_label(form.clientName, 'Pour le client :') }}
+                        {{ form_widget(form.clientName, {'attr':{'class':'form-control border-magenta'}}) }}
+                    </div>
+                    <div class="form-group w-100 ml-3">
+                        {{ form_label(form.infoClient, 'Contact :') }}
+                        {{ form_widget(form.infoClient, {'attr':{'class':'form-control border-magenta'}}) }}
+                    </div>
+                </div>
+                <div class="row col-12 col-xl-8 mx-auto px-0">
+                    <div class="form-group w-100">
+                        {{ form_label(form.comment, 'Votre commentaire :') }}
+                        {{ form_widget(form.comment, {'attr':{'class':'form-control border-magenta textarea-input'}}) }}
+                    </div>
+                </div>
+            </section>
+            <div class="d-flex flex-nowrap align-items-center justify-content-between mb-5 col-12 col-xl-8 mx-auto px-3 w-100">
+                <div>
+                    {{ form_widget(form.displayClient) }}
+                </div>
+                <button type="submit" class="btn btn-add">{{ button_label|default('Envoyer') }}</button>
             </div>
+            {{ form_end(form, {'render_rest': false}) }}
+            {% if is_granted('ROLE_ADMIN') %}
+                <a href="{{ path('recommendation_newstep1') }}">Précédent</a>
+            {% endif %}
         </div>
-        <div class="row formulaire_div">
-            <div class="form-group col-12 col-xl-6 mx-auto">
-                {{ form_label(form.clientName, 'Pour le client :') }}
-                {{ form_widget(form.clientName, {'attr':{'class':'form-control border border-dark'}}) }}
-            </div>
-        </div>
-        <div class="row formulaire_div">
-            <div class="form-group col-12 col-xl-6 mx-auto">
-                {{ form_label(form.infoClient, 'Contact :') }}
-                {{ form_widget(form.infoClient, {'attr':{'class':'form-control border border-dark'}}) }}
-            </div>
-        </div>
-        <div class="row formulaire_div">
-            <div class="form-group col-12 col-xl-6 mx-auto">
-                {{ form_label(form.comment, 'Votre commentaire :') }}
-                {{ form_widget(form.comment, {'attr':{'class':'form-control border border-dark'}}) }}
-            </div>
-        </div>
-        <div class="row formulaire_div">
-            <div class="form-group col-12 col-xl-6 mx-auto">
-                {{ form_widget(form.displayClient) }}
-            </div>
-        </div>
-        <div class="row mb-5">
-            <button type="submit" class="btn btn-dark mx-auto">{{ button_label|default('Envoyer') }}</button>
-        </div>
-        {{ form_end(form, {'render_rest': false}) }}
-        {% if is_granted('ROLE_ADMIN') %}
-            <a href="{{ path('recommendation_newstep1') }}">Précédent</a>
-        {% endif %}
     </div>
 {% endblock %}

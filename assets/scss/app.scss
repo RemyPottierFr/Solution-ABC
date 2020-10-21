@@ -26,11 +26,10 @@ nav {
   width: 100vw;
   background: rgba(55, 50, 81, 0.7);
   position: relative;
-  z-index: 100;
 }
 
 .burger {
-  display: none;
+  display: flex;
   width: 32px;
   height: 32px;
   flex-direction: column;
@@ -42,7 +41,7 @@ nav {
   margin: 0;
   background-color: transparent;
   border: none;
-  z-index: 10;
+  z-index: 100 !important;
 }
 
 .burger__line {
@@ -77,15 +76,16 @@ nav {
   left: 0;
   top: 0px;
   width: 100%;
+  z-index: 90 !important;
 }
 
 .Header__menu--section {
   display: flex;
   justify-content: space-between;
   width: 100%;
-  padding: 24px;
-  padding-top: 32px;
+  padding: 32px 24px 24px;
   margin: 0;
+  z-index: 5;
 }
 
 .Header__menu--section-item {
@@ -113,8 +113,7 @@ nav {
   background-color: rgb(55, 50, 81);
   font-size: 16px;
   font-family: "Lato";
-  padding: 8px;
-  padding-left: 12px;
+  padding: 8px 8px 8px 12px;
   width: 110%;
   z-index: 5;
 }
@@ -454,6 +453,7 @@ nav {
   font-family: "Lato";
   font-size: 1.25rem;
   color: #8873C0;
+  margin: 1em 0 0;
 }
 
 .lastReco__row--item-company {
@@ -466,28 +466,9 @@ nav {
   display: grid;
 }
 
-@media screen and (min-width: 720px) {
-  .membres {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    grid-gap: 32px;
-    padding: 60px 20px;
-  }
-}
 
-@media screen and (max-width: 720px) {
-  .membres {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    grid-gap: 16px;
-    padding: 15px 20px;
-  }
-}
-
-@media screen and (max-width: 420px) {
-  .membres {
-    grid-template-columns: repeat(1, minmax(0, 1fr));
-    grid-gap: 16px;
-    padding: 15px 20px;
-  }
+.recommendation_profile_picture, .recommendation_prestations-text {
+  width: 100%;
 }
 
 .membresPage__head {
@@ -546,10 +527,10 @@ nav {
 }
 
 .card_reco {
-  background: #f8f9fa;
-  box-shadow: 0 0.2rem 0.3rem -0.2rem gray;
-  border-radius: 0.2rem;
-  height: auto;
+  background: white;
+  border-radius: 2rem;
+  border: none !important;
+  padding: 2rem;
 }
 
 .card_connect {
@@ -575,6 +556,10 @@ nav {
 
 .img_carousel {
   width: 10rem;
+}
+
+.name_member_h4 {
+  margin: 1em 0 0;
 }
 
 .name_member_h4 a {
@@ -720,7 +705,6 @@ nav {
 .scroll {
   height: 30rem;
   overflow: auto;
-  padding: 2rem;
 }
 
 .doreco {
@@ -806,38 +790,6 @@ nav {
     height: 100%;
   }
 
-  .burger {
-    display: flex;
-  }
-
-  .Header__menu {
-    width: 100vw;
-    right: -100%;
-    height: 100vh;
-    background-color: rgb(55, 50, 81);
-  }
-
-  .Header__menu--section {
-    flex-direction: column;
-  }
-
-  .Header__menu--section-item {
-    text-align: center;
-  }
-
-  .Header__menu--section-item:hover .Menu__list,
-  .Header__menu--section-item:active .Menu__list {
-    left: 0;
-    width: 100%;
-    padding: 16px;
-    background-color: #fff;
-  }
-
-  .Menu__list--item,
-  .Menu__list--item:hover {
-    color: rgb(55, 50, 81);
-    font-size: 22px;
-  }
 
   .BeMember__title {
     font-size: 60px;
@@ -881,4 +833,189 @@ nav {
 
 .cursor-pointer {
   cursor: pointer;
+}
+
+.form-section {
+  background: white;
+  border-radius: 24px;
+  padding: 32px;
+  margin: 2em 0 1em 0;
+}
+
+.form--label {
+  font-size: 1.2em;
+}
+
+.border-magenta {
+  border: solid #8C77C6 2px !important;
+}
+
+.border-white {
+  border: solid 1px white;
+}
+
+.border-big {
+  border-width: 6px;
+}
+
+.radius-big {
+  border-radius: 1rem;
+}
+
+.textarea-input {
+  min-height: 150px;
+}
+
+.arrow-right--magenta {
+  padding: 4px 8px;
+  max-width: 115px;
+  width: 100%;
+  height: auto;
+}
+
+.font-lato {
+  font-family: Lato, Arial, SansSerif;
+}
+
+.text-magenta {
+  color: #8873c0;
+}
+
+.recommendation-list_profile {
+  height: auto;
+  width: 125px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+.z-50 {
+  z-index: 50 !important;
+}
+
+.z-100 {
+  z-index: 100 !important;
+}
+
+.overflow-image {
+  transform: rotate(0deg);
+}
+
+.rounded-profile-pic {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+}
+
+.centered {
+  position: absolute;
+  left: 50%;
+  top: -150%;
+  transform: translateX(-50%);
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  background: transparent;
+}
+
+.to-right {
+  position: absolute;
+  right: 2em;
+}
+
+.text-2em {
+  font-size: 2em;
+}
+
+.text-1em {
+  font-size: 1.5em;
+}
+
+.profile__infos {
+  width: 100%;
+  position: relative;
+  margin-top: 100px;
+  padding: 8px 16px;
+}
+
+.recommendation__description {
+  display: flex;
+  flex-direction: column;
+}
+
+@media screen and (min-width: 1000px) {
+  .burger {
+    display: none;
+  }
+
+  .mw-md-50 {
+    max-width: 50%;
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .Header__menu {
+    width: 100vw;
+    right: -100%;
+    height: 100vh;
+    background-color: rgb(55, 50, 81);
+  }
+
+  .Header__menu--section {
+    flex-direction: column;
+  }
+
+  .Header__menu--section-item {
+    text-align: center;
+  }
+
+  .Header__menu--section-item:hover .Menu__list,
+  .Header__menu--section-item:active .Menu__list {
+    left: 0;
+    width: 100%;
+    padding: 16px;
+    background-color: #fff;
+  }
+
+  .Menu__list--item,
+  .Menu__list--item:hover {
+    color: rgb(55, 50, 81);
+    font-size: 22px;
+  }
+
+}
+
+@media screen and (min-width: 720px) {
+  .recommendation_profile_picture, .recommendation_prestations-text {
+    width: 50%;
+  }
+  .membres {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-gap: 32px;
+    padding: 60px 20px;
+  }
+
+  .profile__infos {
+    width: 25%;
+    position: relative;
+    margin-top: -50px;
+    padding: 4px 8px;
+  }
+}
+
+@media screen and (max-width: 720px) {
+  .membres {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-gap: 16px;
+    padding: 15px 20px;
+  }
+}
+
+@media screen and (max-width: 420px) {
+  .membres {
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+    grid-gap: 16px;
+    padding: 15px 20px;
+  }
 }

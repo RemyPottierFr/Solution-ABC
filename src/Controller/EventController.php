@@ -29,20 +29,6 @@ class EventController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="event_delete")
-     * @param Event $event
-     * @return Response
-     */
-    public function delete(Event $event): Response
-    {
-        $entityManager = $this->getDoctrine()->getManager();
-        $entityManager->remove($event);
-        $entityManager->flush();
-
-        return $this->redirectToRoute('event');
-    }
-
-    /**
      * @Route("/add", name="event_add")
      * @IsGranted("ROLE_ADMIN")
      * @param Request $request
@@ -126,5 +112,20 @@ class EventController extends AbstractController
             'form' => $form->createView(),
             'event' => $eventRepository->find($request->get('id'))
         ]);
+    }
+
+    /**
+     * @Route("/{id}", name="event_delete")
+     * @IsGranted("ROLE_ADMIN")
+     * @param Event $event
+     * @return Response
+     */
+    public function delete(Event $event): Response
+    {
+        $entityManager = $this->getDoctrine()->getManager();
+        $entityManager->remove($event);
+        $entityManager->flush();
+
+        return $this->redirectToRoute('event');
     }
 }

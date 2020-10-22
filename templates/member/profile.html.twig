@@ -7,23 +7,40 @@
             <div>
                 <img src="/images/banniere_abc.jpg" class="w-100 h-auto radius-big" />
             </div>
-            <div class="position-relative w-100">
+            <div class="position-relative w-100 profile-header">
                 <div class="centered w-75 mw-50 text-center">
                     <div class="rounded-profile-pic rounded-full border-white border-big d-flex flex-column justify-content-center align-items-center overflow-hidden">
                         <img src="{{ member.profileImage }}" class="w-100 h-auto" />
                     </div>
                     <span class="font-weight-bold text-1em">{{ member.name }}</span>
                 </div>
-                <div class="text-right">
-                    <a href="{{ path('member_edit', {'id': member.id}) }}"
-                       class="btn text-dark text-2em"><i class="fas fa-cog"></i>
-                    </a>
-                </div>
+
+                {% if app.user %}
+                    <div class="text-right">
+                        <a href="{{ path('member_edit', {'id': member.id}) }}"
+                           class="btn text-dark text-2em"><i class="fas fa-cog"></i>
+                        </a>
+                    </div>
+                {% endif %}
             </div>
             <div class="profile__infos">
                 <h5><i class="fas fa-building text-magenta mr-2"></i>{{ member.company }}</h5>
                 <h5><i class="fas fa-map-pin text-magenta mr-2"></i>{{ member.workingLocation }}</h5>
                 <h5><i class="fas fa-phone-alt text-magenta mr-2"></i>{{ member.phoneNumber }}</h5>
+                <div class="d-flex">
+                    <h5><i class="fas fa-user text-magenta mr-2"></i></h5>
+                    <div>
+                        {% for job in member.jobs %}
+                            <h5> - {{ job.nameJob }}</h5>
+                        {% endfor %}
+                    </div>
+                </div>
+                {% if app.user %}
+                    <a class="btn btn-add" href="{{ path('prestation_new') }}">
+                        <i class="fas fa-plus mr-2"></i>
+                        Ajouter une prestation
+                    </a>
+                {% endif %}
             </div>
         </section>
 
@@ -32,7 +49,7 @@
                 <button class="btn text-1em"
                         id="summaryOwnedHeader" {% if targRecommendations|length == 0 %} disabled="disabled" {% endif %}>
                     <i class="fas fa-sort-down text-magenta mr-2"></i> <span>Afficher les recommandations reçues</span>
-                    <span>{% if targRecommendations|length>0 %} {{ targRecommendations|length }} {% else %} 0 {% endif %}</span>
+                    <span class="pastille bg-white shadow">{% if targRecommendations|length>0 %} {{ targRecommendations|length }} {% else %} 0 {% endif %}</span>
                 </button>
                 <div class="row scroll hidden mt-2 font-lato" id="summaryOwnedContent">
                     {% for targRecommendation in targRecommendations %}
@@ -71,7 +88,7 @@
                         id="summaryRecievedHeader" {% if ownedRecommendations|length == 0 %} disabled="disabled" {% endif %}>
                     <i class="fas fa-sort-down text-magenta mr-2"></i>
                     <span>Afficher les recommandations envoyées</span>
-                    <span>{% if ownedRecommendations|length > 0 %} {{ ownedRecommendations|length }} {% else %} 0 {% endif %}</span>
+                    <span class="pastille bg-white shadow">{% if ownedRecommendations|length > 0 %} {{ ownedRecommendations|length }} {% else %} 0 {% endif %}</span>
                 </button>
                 <div class="row scroll hidden mt-2 font-lato" id="summaryRecievedContent">
                     {% for ownedRecommendation in ownedRecommendations %}

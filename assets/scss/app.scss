@@ -539,7 +539,7 @@ nav {
 }
 
 .profile-header {
-  transform: translateY(5rem);
+  height: 60px;
 }
 
 .list-item {
@@ -943,6 +943,12 @@ nav {
 .recommendation__description {
   display: flex;
   flex-direction: column;
+}
+
+.pastille {
+  padding: 2px 8px;
+  border-radius: 50%;
+  margin-left: 12px;
 }
 
 @media screen and (min-width: 1000px) {

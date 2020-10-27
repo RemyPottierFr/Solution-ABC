@@ -76,6 +76,7 @@ class EventController extends AbstractController
      * @IsGranted("ROLE_ADMIN")
      * @param Request $request
      * @param Event $event
+     * @param EventRepository $eventRepository
      * @return Response
      */
     public function edit(Request $request, Event $event, EventRepository $eventRepository): Response

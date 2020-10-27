@@ -40,6 +40,8 @@ class RecommendationController extends AbstractController
     /**
      *
      * @Route("/newstep1", name="recommendation_newstep1", methods={"GET","POST"})
+     * @param Request $request
+     * @return Response
      */
     public function newstep1(Request $request): Response
     {
@@ -153,6 +155,8 @@ class RecommendationController extends AbstractController
 
     /**
      * @Route("/{id}", name="recommendation_show", methods={"GET"})
+     * @param Recommendation $recommendation
+     * @return Response
      */
     public function show(Recommendation $recommendation): Response
     {
@@ -236,6 +240,9 @@ class RecommendationController extends AbstractController
     /**
      *
      * @Route("/{id}/status", name="recommendation_status", methods={"GET","POST"})
+     * @param Request $request
+     * @param Recommendation $recommendation
+     * @return Response
      */
     public function status(Request $request, Recommendation $recommendation): Response
     {

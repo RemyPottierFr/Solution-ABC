@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Job;
 use App\Form\JobType;
 use App\Repository\JobRepository;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -17,6 +18,9 @@ class JobController extends AbstractController
 {
     /**
      * @Route("/", name="job_index", methods={"GET"})
+     * @IsGranted("ROLE_ADMIN")
+     * @param JobRepository $jobRepository
+     * @return Response
      */
     public function index(JobRepository $jobRepository): Response
     {
@@ -26,7 +30,10 @@ class JobController extends AbstractController
     }
 
     /**
-     * @Route("/new", name="job_new", methods={"GET","POST"})
+     * @Route("/new/{fallback}", name="job_new", methods={"GET","POST"})
+     * @IsGranted("ROLE_ADMIN")
+     * @param Request $request
+     * @return Response
      */
     public function new(Request $request): Response
     {
@@ -39,7 +46,7 @@ class JobController extends AbstractController
             $entityManager->persist($job);
             $entityManager->flush();
 
-            return $this->redirectToRoute('member_list');
+            return $this->redirectToRoute($request->get('fallback'));
         }
 
         return $this->render('job/new.html.twig', [
@@ -49,17 +56,11 @@ class JobController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="job_show", methods={"GET"})
-     */
-    public function show(Job $job): Response
-    {
-        return $this->render('job/show.html.twig', [
-            'job' => $job,
-        ]);
-    }
-
-    /**
      * @Route("/{id}/edit", name="job_edit", methods={"GET","POST"})
+     * @IsGranted("ROLE_ADMIN")
+     * @param Request $request
+     * @param Job $job
+     * @return Response
      */
     public function edit(Request $request, Job $job): Response
     {
@@ -80,6 +81,10 @@ class JobController extends AbstractController
 
     /**
      * @Route("/{id}", name="job_delete", methods={"DELETE"})
+     * @IsGranted("ROLE_ADMIN")
+     * @param Request $request
+     * @param Job $job
+     * @return Response
      */
     public function delete(Request $request, Job $job): Response
     {

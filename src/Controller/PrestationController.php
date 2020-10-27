@@ -4,7 +4,9 @@ namespace App\Controller;
 
 use App\Entity\Prestation;
 use App\Form\PrestationType;
+use App\Repository\JobRepository;
 use App\Repository\PrestationRepository;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -17,6 +19,9 @@ class PrestationController extends AbstractController
 {
     /**
      * @Route("/", name="prestation_index", methods={"GET"})
+     * @IsGranted("ROLE_ADMIN")
+     * @param PrestationRepository $prestationRepository
+     * @return Response
      */
     public function index(PrestationRepository $prestationRepository): Response
     {
@@ -26,7 +31,8 @@ class PrestationController extends AbstractController
     }
 
     /**
-     * @Route("/new", name="prestation_new", methods={"GET","POST"})
+     * @Route("/new/{fallback}", name="prestation_new", methods={"GET","POST"})
+     * @IsGranted("ROLE_ADMIN")
      * @param Request $request
      * @return Response
      */
@@ -46,7 +52,7 @@ class PrestationController extends AbstractController
             $entityManager->persist($prestation);
             $entityManager->flush();
 
-            return $this->redirectToRoute('member_list');
+            return $this->redirectToRoute($request->get('fallback'));
         }
 
         return $this->render('prestation/new.html.twig', [
@@ -57,6 +63,9 @@ class PrestationController extends AbstractController
 
     /**
      * @Route("/{id}", name="prestation_show", methods={"GET"})
+     * @IsGranted("ROLE_ADMIN")
+     * @param Prestation $prestation
+     * @return Response
      */
     public function show(Prestation $prestation): Response
     {
@@ -67,10 +76,15 @@ class PrestationController extends AbstractController
 
     /**
      * @Route("/{id}/edit", name="prestation_edit", methods={"GET","POST"})
+     * @IsGranted("ROLE_ADMIN")
+     * @param Request $request
+     * @param Prestation $prestation
+     * @param JobRepository $jobRepository
+     * @return Response
      */
-    public function edit(Request $request, Prestation $prestation): Response
+    public function edit(Request $request, Prestation $prestation, JobRepository $jobRepository): Response
     {
-        $form = $this->createForm(PrestationType::class, $prestation);
+        $form = $this->createForm(PrestationType::class, $prestation, ['jobs' => $jobRepository->findAll()]);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -81,20 +95,21 @@ class PrestationController extends AbstractController
 
         return $this->render('prestation/edit.html.twig', [
             'prestation' => $prestation,
-            'form' => $form->createView(),
+            'form' => $form->createView()
         ]);
     }
 
     /**
      * @Route("/{id}", name="prestation_delete", methods={"DELETE"})
+     * @IsGranted("ROLE_ADMIN")
+     * @param Prestation $prestation
+     * @return Response
      */
-    public function delete(Request $request, Prestation $prestation): Response
+    public function delete(Prestation $prestation): Response
     {
-        if ($this->isCsrfTokenValid('delete' . $prestation->getId(), $request->request->get('_token'))) {
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->remove($prestation);
-            $entityManager->flush();
-        }
+        $entityManager = $this->getDoctrine()->getManager();
+        $entityManager->remove($prestation);
+        $entityManager->flush();
 
         return $this->redirectToRoute('prestation_index');
     }

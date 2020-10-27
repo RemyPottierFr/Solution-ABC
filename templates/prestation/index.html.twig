@@ -3,24 +3,31 @@
 {% block title %}Prestation index{% endblock %}
 
 {% block body %}
-    <h1>Prestation index</h1>
+    <h1 class="memberList__title">Liste des prestations</h1>
 
-    <table class="table">
+    <table class="table container">
         <thead>
         <tr>
-            <th>Id</th>
-            <th>Name</th>
-            <th>actions</th>
+            <th>Nom</th>
+            <th class="text-right">
+                <a class="btn btn-add mx-2" href="{{ path('prestation_new', {'fallback':'prestation_index' }) }}">
+                    <span>Ajouter</span>
+                    <i class="fas fa-plus"></i>
+                </a>
+            </th>
         </tr>
         </thead>
         <tbody>
         {% for prestation in prestations %}
             <tr>
-                <td>{{ prestation.id }}</td>
                 <td>{{ prestation.name }}</td>
-                <td>
-                    <a href="{{ path('prestation_show', {'id': prestation.id}) }}">show</a>
-                    <a href="{{ path('prestation_edit', {'id': prestation.id}) }}">edit</a>
+                <td class="text-right d-flex justify-content-end align-items-center">
+                    <a class="memberList__line-item-link mx-2 text-magenta"
+                       href="{{ path('prestation_edit', {'id': prestation.id}) }}">
+                        <i class="fas fa-pen"></i>
+                        <span>Édition</span>
+                    </a>
+                    {{ include('prestation/_delete_form.html.twig') }}
                 </td>
             </tr>
         {% else %}
@@ -31,5 +38,4 @@
         </tbody>
     </table>
 
-    <a href="{{ path('prestation_new') }}">Create new</a>
 {% endblock %}

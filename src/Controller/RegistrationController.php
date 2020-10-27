@@ -17,6 +17,13 @@ class RegistrationController extends AbstractController
 {
     /**
      * @Route("/register", name="app_register")
+     * @param Request $request
+     * @param UserPasswordEncoderInterface $passwordEncoder
+     * @param GuardAuthenticatorHandler $guardHandler
+     * @param LoginFormAuthenticator $authenticator
+     * @param MailerInterface $mailer
+     * @return \Symfony\Component\HttpFoundation\Response|null
+     * @throws \Symfony\Component\Mailer\Exception\TransportExceptionInterface
      */
     public function register(
         Request $request,
@@ -24,8 +31,7 @@ class RegistrationController extends AbstractController
         GuardAuthenticatorHandler $guardHandler,
         LoginFormAuthenticator $authenticator,
         MailerInterface $mailer
-    )
-    {
+    ) {
         $user = new Member();
         $form = $this->createForm(RegistrationFormType::class, $user);
         $form->handleRequest($request);

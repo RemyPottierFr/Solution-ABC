@@ -9,7 +9,7 @@
                 Un groupe de professionnel, à votre disposition.
             </p>
         </div>
-        <div class="membres">
+        <div class="membres container">
             {% for member in members %}
                 <div class="membres__card">
                     <a href="{{ path('member_profile', {id:member.id}) }}">

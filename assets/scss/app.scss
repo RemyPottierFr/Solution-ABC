@@ -951,6 +951,10 @@ nav {
   margin-left: 12px;
 }
 
+.lastReco__row--item-divider {
+  display: none;
+}
+
 @media screen and (min-width: 1000px) {
   .burger {
     display: none;
@@ -990,7 +994,24 @@ nav {
     color: rgb(55, 50, 81);
     font-size: 22px;
   }
+  .MemberCaroussel__row {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 
+  .lastReco__rom--item-arrow, .MemberCaroussel__row div:nth-child(1n+3) {
+    display: none;
+  }
+
+  .lastReco__row--item-divider {
+    display: block;
+    color: white;
+    text-align: center;
+    margin: 1rem;
+  }
+  .lastReco__row--item {
+    justify-content: center;
+  }
 }
 
 @media screen and (min-width: 720px) {
@@ -1020,9 +1041,29 @@ nav {
 }
 
 @media screen and (max-width: 420px) {
+  .MemberCaroussel__row {
+    display: grid;
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+  }
+
+  .lastReco__rom--item-arrow, .MemberCaroussel__row div:nth-child(1n+2), .lastReco__row .lastReco__row--item:nth-child(1n+2) {
+    display: none;
+  }
+
+  .lastReco__row--item-part {
+    margin: 1rem;
+  }
+
+  .lastReco__row--item {
+    width: 100%;
+    justify-content: center;
+    text-transform: uppercase;
+  }
+
+
   .membres {
     grid-template-columns: repeat(1, minmax(0, 1fr));
     grid-gap: 16px;
-    padding: 15px 20px;
+    padding: 15px 60px;
   }
 }

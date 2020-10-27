@@ -1,27 +1,33 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Metier index
+{% block title %}Métier index
 {% endblock %}
 
 {% block body %}
-    <h1>Index des métier</h1>
+    <h1 class="memberList__title">Index des métier</h1>
 
-    <table class="table">
+    <table class="table container">
         <thead>
         <tr>
-            <th>Id</th>
             <th>NameMetier</th>
-            <th>actions</th>
+            <th class="text-right">
+                <a class="btn btn-add mx-2" href="{{ path('job_new', {'fallback': 'job_index'}) }}">
+                    <span>Ajouter</span>
+                    <i class="fas fa-plus"></i>
+                </a>
+            </th>
         </tr>
         </thead>
         <tbody>
         {% for job in jobs %}
             <tr>
-                <td>{{ job.id }}</td>
                 <td>{{ job.nameJob }}</td>
-                <td>
-                    <a href="{{ path('job_show', {'id': job.id}) }}">show</a>
-                    <a href="{{ path('job_edit', {'id': job.id}) }}">edit</a>
+                <td class="text-right d-flex justify-content-end align-items-center">
+                    <a class="mr-2 text-magenta" href="{{ path('job_edit', {'id': job.id}) }}">
+                        <i class="fas fa-pen"></i>
+                        <span>Édition</span>
+                    </a>
+                    {{ include('job/_delete_form.html.twig') }}
                 </td>
             </tr>
         {% else %}
@@ -32,5 +38,4 @@
         </tbody>
     </table>
 
-    <a href="{{ path('job_new') }}">Create new</a>
 {% endblock %}

@@ -60,6 +60,8 @@ class MemberController extends AbstractController
     /**
      * @IsGranted("ROLE_ADMIN")
      * @Route("/{id}", name="member_show", methods={"GET"})
+     * @param Member $member
+     * @return Response
      */
     public function show(Member $member): Response
     {
@@ -74,6 +76,8 @@ class MemberController extends AbstractController
      * @param Request $request
      * @param Member $member
      * @param UserPasswordEncoderInterface $passwordEncoder
+     * @return Response
+     * @return Response
      */
     public function edit(
         Request $request,
@@ -110,6 +114,9 @@ class MemberController extends AbstractController
     /**
      * @IsGranted("ROLE_ADMIN")
      * @Route("/{id}", name="member_delete", methods={"DELETE"})
+     * @param Request $request
+     * @param Member $member
+     * @return Response
      */
     public function delete(Request $request, Member $member): Response
     {

@@ -8,18 +8,19 @@
             <div class="carousel-item active">
                 <div class="row lastReco__row">
                     {% for recommendation in recommendations|slice(-2, 2) %}
-                        <div class="lastReco__row--item">
+                        <div class="lastReco__row--item font-lato">
                             <img class="lastReco__rom--item-arrow"
                                  src={{ asset('images/curve-arrow.svg') }} alt="arrow"/>
                             <div class="lastReco__row--item-part">
                                 <img src={{ recommendation.owner.profileImage }} class="lastReco__row--item-profile"
-                                     alt="test"/>
+                                     alt="test" />
                                 <p class="lastReco__row--item-name">{{ recommendation.owner.name }}</p>
                                 <span class="lastReco__row--item-company">{{ recommendation.owner.company }}</span>
                             </div>
+                            <h5 class="lastReco__row--item-divider">Recommande</h5>
                             <div class="lastReco__row--item-part">
                                 <img src={{ recommendation.target.profileImage }} class="lastReco__row--item-profile"
-                                     alt="test"/>
+                                     alt="test" />
                                 <p class="lastReco__row--item-name">{{ recommendation.target.name }}</p>
                                 <span class="lastReco__row--item-company">{{ recommendation.target.company }}</span>
                             </div>
@@ -35,13 +36,14 @@
                                  src={{ asset('images/curve-arrow.svg') }} alt="arrow"/>
                             <div class="lastReco__row--item-part">
                                 <img src={{ recommendation.owner.profileImage }} class="lastReco__row--item-profile"
-                                     alt="test"/>
+                                     alt="test" />
                                 <p class="lastReco__row--item-name">{{ recommendation.owner.name }}</p>
                                 <span class="lastReco__row--item-company">{{ recommendation.owner.company }}</span>
                             </div>
+                            <h5 class="lastReco__row--item-divider">Recommande</h5>
                             <div class="lastReco__row--item-part">
                                 <img src={{ recommendation.target.profileImage }} class="lastReco__row--item-profile"
-                                     alt="test"/>
+                                     alt="test" />
                                 <p class="lastReco__row--item-name">{{ recommendation.target.name }}</p>
                                 <span class="lastReco__row--item-company">{{ recommendation.target.company }}</span>
                             </div>
@@ -54,12 +56,5 @@
         {% else %}
             <p class="lastReco-no-reco">Aucune recommandations pour le moment !</p>
         {% endif %}
-        {# <a class="carousel-control-prev" href="#home_reco" role="button" data-slide="prev">
-																											<span class="carousel-control-prev-icon" aria-hidden="true"></span>
-																											<span class="sr-only">Précédent</span>
-																										</a>
-																										<a class="carousel-control-next" href="#home_reco" role="button" data-slide="next">
-																											<span class="carousel-control-next-icon" aria-hidden="true"></span>
-																											<span class="sr-only">Suivant</span>
-																										</a> #}
+    </div>
 </section>

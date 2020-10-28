@@ -31,7 +31,7 @@ class PrestationController extends AbstractController
     }
 
     /**
-     * @Route("/new/{fallback}", name="prestation_new", methods={"GET","POST"})
+     * @Route("/new", name="prestation_new", methods={"GET","POST"})
      * @IsGranted("ROLE_ADMIN")
      * @param Request $request
      * @return Response
@@ -52,7 +52,13 @@ class PrestationController extends AbstractController
             $entityManager->persist($prestation);
             $entityManager->flush();
 
-            return $this->redirectToRoute($request->get('fallback'));
+            if ($request->get('id')) {
+                return $this->redirectToRoute($request->get('fallback'), [
+                    'id' => $request->get('id')
+                ]);
+            } else {
+                return $this->redirectToRoute($request->get('fallback'));
+            }
         }
 
         return $this->render('prestation/new.html.twig', [

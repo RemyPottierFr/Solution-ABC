@@ -36,7 +36,8 @@
                     </div>
                 </div>
                 {% if app.user %}
-                    <a class="btn btn-add" href="{{ path('prestation_new') }}">
+                    <a class="btn btn-add"
+                       href="{{ path('prestation_new', {'fallback':'member_profile', 'id':member.id}) }}">
                         <i class="fas fa-plus mr-2"></i>
                         Ajouter une prestation
                     </a>

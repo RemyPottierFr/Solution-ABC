@@ -30,7 +30,7 @@ class JobController extends AbstractController
     }
 
     /**
-     * @Route("/new/{fallback}", name="job_new", methods={"GET","POST"})
+     * @Route("/new", name="job_new", methods={"GET","POST"})
      * @IsGranted("ROLE_ADMIN")
      * @param Request $request
      * @return Response

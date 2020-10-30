@@ -12,13 +12,13 @@
         </div>
         <section class="Event__list">
             {% for event in events %}
-                <div class="Event__list-item event-toggle cursor-pointer d-flex flex-column"
+                <div class="Event__list-item event-toggle cursor-pointer flex-column"
                      onclick="toggleRecap('{{ event.title }}')">
-                    <div class="w-100 d-flex flex-nowrap align-items-center">
+                    <div class="w-100 d-flex flex-column flex-nowrap flex-md-row align-items-start align-items-md-center">
                         <span class="Event__list-item--date">{{ event.date|date("d/m/Y") }}</span>
                         <span>{{ event.title }}</span>
                         {% if event.flyer %}
-                        <a href="{{ asset('uploads/flyers/' ~ event.flyer) }}" target="_blank" class="text-nowrap"
+                        <a href="{{ asset('uploads/flyers/' ~ event.flyer) }}" target="_blank" class="text-nowrap mx-2"
                            rel="noopener nofollow">Voir
                             le flyer (PDF)</a>
                         {% endif %}

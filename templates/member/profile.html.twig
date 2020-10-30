@@ -15,7 +15,7 @@
                     <span class="font-weight-bold text-1em">{{ member.name }}</span>
                 </div>
 
-                {% if app.user %}
+                {% if app.user.id == member.id or is_granted('ROLE_ADMIN') %}
                     <div class="text-right">
                         <a href="{{ path('member_edit', {'id': member.id}) }}"
                            class="btn text-dark text-2em"><i class="fas fa-cog"></i>
@@ -35,7 +35,7 @@
                         {% endfor %}
                     </div>
                 </div>
-                {% if app.user %}
+                {% if app.user.id == member.id or is_granted('ROLE_ADMIN') %}
                     <a class="btn btn-add"
                        href="{{ path('prestation_new', {'fallback':'member_profile', 'id':member.id}) }}">
                         <i class="fas fa-plus mr-2"></i>

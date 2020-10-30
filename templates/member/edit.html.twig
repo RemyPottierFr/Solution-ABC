@@ -24,7 +24,7 @@
             <div class="form-group col-12 col-xl-6 mx-auto">
                 {{ form_label(form.jobs, 'Métier') }}
                 {{ form_widget(form.jobs, {'attr':{'class':'form-control border-magenta'}}) }}
-                <p>Cliquer <a href="{{ path('job_new', , {'fallback':'member_new' }) }}">ici</a>pour ajouter un métier
+                <p>Cliquer <a href="{{ path('job_new', {'fallback':'member_new' }) }}">ici</a>pour ajouter un métier
                 </p>
             </div>
         </div>

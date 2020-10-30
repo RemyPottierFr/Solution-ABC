@@ -56,8 +56,10 @@ class PrestationController extends AbstractController
                 return $this->redirectToRoute($request->get('fallback'), [
                     'id' => $request->get('id')
                 ]);
-            } else {
+            } elseif ($request->get('fallback')) {
                 return $this->redirectToRoute($request->get('fallback'));
+            } else {
+                return $this->redirectToRoute('default');
             }
         }
 

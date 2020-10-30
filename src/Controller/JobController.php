@@ -30,7 +30,7 @@ class JobController extends AbstractController
     }
 
     /**
-     * @Route("/new/{fallback}", name="job_new", methods={"GET","POST"})
+     * @Route("/new", name="job_new", methods={"GET","POST"})
      * @IsGranted("ROLE_ADMIN")
      * @param Request $request
      * @return Response
@@ -46,7 +46,11 @@ class JobController extends AbstractController
             $entityManager->persist($job);
             $entityManager->flush();
 
-            return $this->redirectToRoute($request->get('fallback'));
+            if ($request->get('fallback')) {
+                return $this->redirectToRoute($request->get('fallback'));
+            } else {
+                return $this->redirectToRoute('default');
+            }
         }
 
         return $this->render('job/new.html.twig', [

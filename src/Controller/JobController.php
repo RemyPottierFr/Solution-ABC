@@ -46,7 +46,11 @@ class JobController extends AbstractController
             $entityManager->persist($job);
             $entityManager->flush();
 
-            return $this->redirectToRoute($request->get('fallback'));
+            if ($request->get('fallback')) {
+                return $this->redirectToRoute($request->get('fallback'));
+            } else {
+                return $this->redirectToRoute('default');
+            }
         }
 
         return $this->render('job/new.html.twig', [

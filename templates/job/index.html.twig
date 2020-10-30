@@ -9,7 +9,7 @@
     <table class="table container">
         <thead>
         <tr>
-            <th>NameMetier</th>
+            <th>Nom</th>
             <th class="text-right">
                 <a class="btn btn-add mx-2" href="{{ path('job_new', {'fallback': 'job_index'}) }}">
                     <span>Ajouter</span>
@@ -23,7 +23,7 @@
             <tr>
                 <td>{{ job.nameJob }}</td>
                 <td class="text-right d-flex justify-content-end align-items-center">
-                    <a class="mr-2 text-magenta" href="{{ path('job_edit', {'id': job.id}) }}">
+                    <a class="mr-2 text-magenta text-nowrap" href="{{ path('job_edit', {'id': job.id}) }}">
                         <i class="fas fa-pen"></i>
                         <span>Édition</span>
                     </a>

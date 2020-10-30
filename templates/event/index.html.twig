@@ -12,9 +12,9 @@
         </div>
         <section class="Event__list">
             {% for event in events %}
-                <div class="Event__list-item event-toggle cursor-pointer"
+                <div class="Event__list-item event-toggle cursor-pointer flex-column"
                      onclick="toggleRecap('{{ event.title }}')">
-                    <div class="w-100 d-flex flex-column flex-md-nowrap align-items-start align-items-md-center">
+                    <div class="w-100 d-flex flex-column flex-nowrap flex-md-row align-items-start align-items-md-center">
                         <span class="Event__list-item--date">{{ event.date|date("d/m/Y") }}</span>
                         <span>{{ event.title }}</span>
                         {% if event.flyer %}

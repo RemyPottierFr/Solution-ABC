@@ -32,7 +32,6 @@ class PrestationController extends AbstractController
 
     /**
      * @Route("/new", name="prestation_new", methods={"GET","POST"})
-     * @IsGranted("ROLE_ADMIN")
      * @param Request $request
      * @return Response
      */
